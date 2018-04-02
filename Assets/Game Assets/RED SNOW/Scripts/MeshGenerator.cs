@@ -1,28 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(BezierCollider2D))] 
 public class MeshGenerator : MonoBehaviour {
 
 	public Material mat;
-
-	public float width = 1;
-	public float height = 1;
-
+	BezierCollider2D bezierCollider;
+    EdgeCollider2D edgeCollider;
+	public float border = -20;
+	public Mesh mesh;
 	void Start()
 	{
-		Mesh mesh = new Mesh();
+		bezierCollider = GetComponent<BezierCollider2D>();
+        edgeCollider = GetComponent<EdgeCollider2D>();
+		mesh = new Mesh();
+		Vector2[] edgePoints = edgeCollider.points;
+		Vector3[] slopeMesh = new Vector3[edgePoints.Length*2];
 
-		Vector3[] vertices = new Vector3[4];
+		for(int i = 0; i < edgePoints.Length*2; i++)
+		{
+			slopeMesh[i] = edgePoints[i/2];
+			i++;
+			slopeMesh[i] = new Vector3(slopeMesh[(i-1)].x,slopeMesh[(i-1)].y +border,slopeMesh[(i-1)].z);
+		}
 
-		vertices[0] = new Vector3(-width,-height);
-		vertices[1] = new Vector3(-width,height);
-		vertices[2] = new Vector3(width,height);
-		vertices[3] = new Vector3(width,-height);
+		mesh.vertices = slopeMesh;
 
-		mesh.vertices = vertices;
+		List<int> triangles = new List<int>();
+		for(int i=0;i<slopeMesh.Length-3;i++)
+		{
+			triangles.Add(i);
+			triangles.Add(i+2);
+			triangles.Add(i+1);
 
-		mesh.triangles = new int[] {0,1,2,0,2,3};
+			i++;
+			triangles.Add(i);
+			triangles.Add(i+1);
+			triangles.Add(i+2);
+		}
+
+		mesh.triangles = triangles.ToArray();
 		GetComponent<MeshRenderer>().material = mat;
 		GetComponent<MeshFilter>().mesh = mesh;
 	}

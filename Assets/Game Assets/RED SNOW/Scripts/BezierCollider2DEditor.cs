@@ -48,6 +48,7 @@ public class BezierCollider2DEditor : Editor
                 lastHandlerFirstPoint = bezierCollider.handlerFirstPoint;
                 lastSecondPoint = bezierCollider.secondPoint;
                 lastHandlerSecondPoint = bezierCollider.handlerSecondPoint;
+                //the important line
                 edgeCollider.points = bezierCollider.calculate2DPoints();
             }
 

@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1057515539460442}
+  m_RootGameObject: {fileID: 1878837641873934}
   m_IsPrefabParent: 1
---- !u!1 &1057515539460442
+--- !u!1 &1878837641873934
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4832691260070606}
-  - component: {fileID: 68748837113783756}
-  - component: {fileID: 114232857503621678}
-  - component: {fileID: 114354006954492430}
-  - component: {fileID: 33312145604613174}
-  - component: {fileID: 23374026045846216}
+  - component: {fileID: 4927819444865420}
+  - component: {fileID: 33295525876469242}
+  - component: {fileID: 23347522970793862}
+  - component: {fileID: 68123393376033914}
+  - component: {fileID: 114352277203156498}
+  - component: {fileID: 114655706697686202}
   m_Layer: 8
-  m_Name: SlopeChunk
-  m_TagString: Ground
+  m_Name: Slope
+  m_TagString: Slope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4832691260070606
+--- !u!4 &4927819444865420
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057515539460442}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25516635, y: 3.1601505, z: 0.076171875}
+  m_GameObject: {fileID: 1878837641873934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23374026045846216
+--- !u!23 &23347522970793862
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057515539460442}
+  m_GameObject: {fileID: 1878837641873934}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -78,19 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33312145604613174
+--- !u!33 &33295525876469242
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057515539460442}
+  m_GameObject: {fileID: 1878837641873934}
   m_Mesh: {fileID: 0}
---- !u!68 &68748837113783756
+--- !u!68 &68123393376033914
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057515539460442}
+  m_GameObject: {fileID: 1878837641873934}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -100,59 +100,59 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -10, y: 0}
-  - {x: -8.82368, y: -0.553216}
-  - {x: -7.6934404, y: -1.017728}
-  - {x: -6.60736, y: -1.400832}
-  - {x: -5.5635214, y: -1.7098242}
-  - {x: -4.5600004, y: -1.9520001}
-  - {x: -3.5948799, y: -2.134656}
-  - {x: -2.66624, y: -2.2650878}
-  - {x: -1.7721602, y: -2.3505921}
-  - {x: -0.9107199, y: -2.398464}
-  - {x: -0.08000022, y: -2.4160001}
-  - {x: 0.72192, y: -2.4104958}
-  - {x: 1.4969602, y: -2.389248}
-  - {x: 2.2470396, y: -2.359552}
-  - {x: 2.9740798, y: -2.3287039}
-  - {x: 3.6800003, y: -2.304}
-  - {x: 4.3667197, y: -2.292736}
-  - {x: 5.0361605, y: -2.302208}
-  - {x: 5.69024, y: -2.339712}
-  - {x: 6.33088, y: -2.412544}
-  - {x: 6.9600005, y: -2.528}
-  - {x: 7.5795193, y: -2.6933758}
-  - {x: 8.19136, y: -2.915968}
-  - {x: 8.79744, y: -3.203072}
-  - {x: 9.39968, y: -3.5619838}
-  - {x: 10, y: -4}
---- !u!114 &114232857503621678
+  - {x: 0, y: 0}
+  - {x: 0.31168, y: -0.27897596}
+  - {x: 0.6454399, y: -0.51820797}
+  - {x: 0.99935997, y: -0.721152}
+  - {x: 1.37152, y: -0.8912641}
+  - {x: 1.7600002, y: -1.0320002}
+  - {x: 2.1628802, y: -1.146816}
+  - {x: 2.5782402, y: -1.2391679}
+  - {x: 3.00416, y: -1.312512}
+  - {x: 3.4387197, y: -1.370304}
+  - {x: 3.8800004, y: -1.4160001}
+  - {x: 4.3260803, y: -1.4530559}
+  - {x: 4.7750397, y: -1.4849279}
+  - {x: 5.2249594, y: -1.515072}
+  - {x: 5.6739197, y: -1.546944}
+  - {x: 6.12, y: -1.5840001}
+  - {x: 6.5612803, y: -1.6296961}
+  - {x: 6.99584, y: -1.6874881}
+  - {x: 7.4217596, y: -1.760832}
+  - {x: 7.83712, y: -1.853184}
+  - {x: 8.240001, y: -1.9679999}
+  - {x: 8.62848, y: -2.1087358}
+  - {x: 9.000641, y: -2.278848}
+  - {x: 9.35456, y: -2.481792}
+  - {x: 9.68832, y: -2.7210238}
+  - {x: 10, y: -3}
+--- !u!114 &114352277203156498
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057515539460442}
+  m_GameObject: {fileID: 1878837641873934}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e009425a8fd8a134a81b97de9da46447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPoint: {x: -10, y: 0}
-  secondPoint: {x: 10, y: -4}
-  handlerFirstPoint: {x: 0, y: -5}
-  handlerSecondPoint: {x: 5, y: 0}
+  firstPoint: {x: 0, y: 0}
+  handlerFirstPoint: {x: 2.5, y: -2.5}
+  secondPoint: {x: 10, y: -3}
+  handlerSecondPoint: {x: 7.5, y: -0.5}
   pointsQuantity: 25
---- !u!114 &114354006954492430
+--- !u!114 &114655706697686202
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057515539460442}
+  m_GameObject: {fileID: 1878837641873934}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2afae2609e310834994102f058142f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 0}
+  mat: {fileID: 2100000, guid: 3e3fbf41f7fdc8e408dd0b7152788a4e, type: 2}
   border: -10
   mesh: {fileID: 0}

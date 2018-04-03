@@ -5,13 +5,11 @@ using UnityEngine;
 public class MeshGenerator : MonoBehaviour {
 
 	public Material mat;
-	BezierCollider2D bezierCollider;
     EdgeCollider2D edgeCollider;
 	public float border = -20;
 	public Mesh mesh;
 	void Start()
 	{
-		bezierCollider = GetComponent<BezierCollider2D>();
         edgeCollider = GetComponent<EdgeCollider2D>();
 		mesh = new Mesh();
 		Vector2[] edgePoints = edgeCollider.points;

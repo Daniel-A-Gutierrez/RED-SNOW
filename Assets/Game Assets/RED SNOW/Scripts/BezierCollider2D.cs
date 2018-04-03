@@ -5,13 +5,17 @@ using System.Collections.Generic;
 public class BezierCollider2D : MonoBehaviour 
 {
     public Vector2 firstPoint;
-    public Vector2 secondPoint;
-
     public Vector2 handlerFirstPoint;
+    public Vector2 secondPoint;
     public Vector2 handlerSecondPoint;
     private Vector2 firstDerivative;
     private Vector2 lastDerivative;
     public int pointsQuantity;
+
+    void Start()
+    {
+         GetComponent<EdgeCollider2D>().points = GetComponent<BezierCollider2D>().calculate2DPoints();
+    }
 
     Vector3 CalculateBezierPoint(float t,Vector3 p0,Vector3 handlerP0,Vector3 handlerP1,Vector3 p1)
     {
@@ -28,7 +32,14 @@ public class BezierCollider2D : MonoBehaviour
 
         return p;
     }
-
+    public Vector2 getFirstDerivative()
+    {
+        return firstDerivative;
+    }
+    public Vector2 getLastDerivative()
+    {
+        return lastDerivative;
+    }
     public Vector2[] calculate2DPoints()
     {
         List<Vector2> points = new List<Vector2>();
@@ -41,8 +52,7 @@ public class BezierCollider2D : MonoBehaviour
         points.Add(secondPoint);
         firstDerivative = points[1]-points[0];
         lastDerivative = points[pointsQuantity] - points[pointsQuantity-1];
-        print("first " + firstDerivative.y/firstDerivative.x);
-        print("last " + lastDerivative.y/lastDerivative.x);
+       
         return points.ToArray();
     }
 

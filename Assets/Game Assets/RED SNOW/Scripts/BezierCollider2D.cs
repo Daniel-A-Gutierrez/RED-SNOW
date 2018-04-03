@@ -9,7 +9,8 @@ public class BezierCollider2D : MonoBehaviour
 
     public Vector2 handlerFirstPoint;
     public Vector2 handlerSecondPoint;
-
+    private Vector2 firstDerivative;
+    private Vector2 lastDerivative;
     public int pointsQuantity;
 
     Vector3 CalculateBezierPoint(float t,Vector3 p0,Vector3 handlerP0,Vector3 handlerP1,Vector3 p1)
@@ -38,7 +39,10 @@ public class BezierCollider2D : MonoBehaviour
             points.Add(CalculateBezierPoint((1f/pointsQuantity)*i,firstPoint,handlerFirstPoint,handlerSecondPoint,secondPoint));
         }
         points.Add(secondPoint);
-
+        firstDerivative = points[1]-points[0];
+        lastDerivative = points[pointsQuantity] - points[pointsQuantity-1];
+        print("first " + firstDerivative.y/firstDerivative.x);
+        print("last " + lastDerivative.y/lastDerivative.x);
         return points.ToArray();
     }
 

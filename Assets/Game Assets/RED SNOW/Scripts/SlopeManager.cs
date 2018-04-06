@@ -84,7 +84,7 @@ public class SlopeManager : MonoBehaviour {
 		*/
 		newSlope.GetComponent<EdgeCollider2D>().points = newSlope.GetComponent<BezierCollider2D>().calculate2DPoints();
 		slopes.Add(newSlope.transform);
-		print("position" + newSlope.transform.position + "p1 : " + bezier.firstPoint + "p2:" + bezier.handlerFirstPoint+ "p3 " + bezier.handlerSecondPoint + "p4: " +bezier.secondPoint);
+//		print("position" + newSlope.transform.position + "p1 : " + bezier.firstPoint + "p2:" + bezier.handlerFirstPoint+ "p3 " + bezier.handlerSecondPoint + "p4: " +bezier.secondPoint);
 	}
 
 	// basically if the character gets within render distance
@@ -100,7 +100,7 @@ public class SlopeManager : MonoBehaviour {
 		{
 
 			CreateSlope(slopes[slopes.Count-1].GetComponent<BezierCollider2D>().secondPoint + 
-			new Vector2 ( slopes[slopes.Count-1].transform.position.x ,slopes[slopes.Count-1].transform.position.y) , 2.5f);
+			new Vector2 ( slopes[slopes.Count-1].transform.position.x ,slopes[slopes.Count-1].transform.position.y) , 7.5f);
 		}
 		if(player.transform.position.x - slopes[0].position.x > renderDistance)
 		{

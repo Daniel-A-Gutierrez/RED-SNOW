@@ -11,6 +11,8 @@ public class BezierCollider2D : MonoBehaviour
     private Vector2 firstDerivative;
     private Vector2 lastDerivative;
     public int pointsQuantity;
+    List<Vector2> points;
+
 
     void Start()
     {
@@ -40,9 +42,10 @@ public class BezierCollider2D : MonoBehaviour
     {
         return lastDerivative;
     }
+
     public Vector2[] calculate2DPoints()
     {
-        List<Vector2> points = new List<Vector2>();
+        points = new List<Vector2>();
 
         points.Add(firstPoint);
         for(int i=1;i<pointsQuantity;i++)
@@ -55,5 +58,6 @@ public class BezierCollider2D : MonoBehaviour
        
         return points.ToArray();
     }
+
 
 }

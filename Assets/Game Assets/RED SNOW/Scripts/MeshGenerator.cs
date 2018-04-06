@@ -38,6 +38,7 @@ public class MeshGenerator : MonoBehaviour {
 		}
 
 		mesh.triangles = triangles.ToArray();
+		mesh.RecalculateNormals();
 		GetComponent<MeshRenderer>().material = mat;
 		GetComponent<MeshFilter>().mesh = mesh;
 	}

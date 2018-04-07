@@ -12,6 +12,7 @@ public class SlopeManager : MonoBehaviour {
 	public float slopeDeclineFactor;
 	public float slopeTurbulenceFactor;
 	public float renderDistance;
+	float originalRD;
 	// Use this for initialization
 	void Start ()
 	{
@@ -22,12 +23,14 @@ public class SlopeManager : MonoBehaviour {
 		{
 			slopes.Add(g.transform);
 		}
-
+		originalRD = renderDistance;
 	}
-	//what vars do i need right now for this? 
-	//start end, a starting derivative
-	//a mean slope
-	// a random secondary point
+
+	void Update()
+	{
+		renderDistance = originalRD*transform.localScale.magnitude;
+	}
+
 	void CreateSlope(Vector2 p0, float density)
 	{
 		GameObject newSlope = Instantiate(toInstantiate,p0,Quaternion.identity);
@@ -39,32 +42,6 @@ public class SlopeManager : MonoBehaviour {
 		float decline = slopeDeclineFactor*Random.Range(-.2f,1.5f);
 		float length = slopeLengthFactor*Random.Range(.25f,2);
 		float turbulence = slopeTurbulenceFactor*Random.Range(0,2);
-		/* 
-		if(score>=10000)
-		{
-		    decline = (slopeDeclineFactor*(Random.Range(1,3)))*3;
-		}
-		else
-		{
-			 decline = slopeDeclineFactor*(1/3330*score*Random.Range(.5f,score/4000+.5f)+.5f);
-		}
-		if(score>=10000)
-		{
-		 	length = slopeLengthFactor/4*Random.Range(.5f,4);
-		}
-		else
-		{
-			 length = slopeLengthFactor/(1/3333*score + 1)/Random.Range(.5f,3);
-		}
-		if(score>=10000)
-		{
-			turbulence = slopeTurbulenceFactor*Random.Range(.25f,2f);
-		}
-		else
-		{
-			turbulence = slopeTurbulenceFactor*(1/10000*score)+.2f;
-		}
-		*/
 		float deviation1 = Random.Range(.2f,.7f);
 		float deviation2 = Random.Range(deviation1,.8f);
 		float regressive1 = Random.Range(-length*turbulence,length*turbulence);
@@ -76,23 +53,14 @@ public class SlopeManager : MonoBehaviour {
 		bezier.secondPoint = new Vector2(length,decline *length);
 		bezier.pointsQuantity = (int)(density*(length));
 
-		/* 
-		bezier.firstPoint = new Vector2(0,0);
-		bezier.secondPoint = new Vector2(10,bezier.firstPoint.y) ;
-		bezier.handlerFirstPoint = bezier.firstPoint + new Vector2(1,0) ;
-		bezier.handlerSecondPoint = bezier.firstPoint+ new Vector2(9,0) ;
-		*/
 		newSlope.GetComponent<EdgeCollider2D>().points = newSlope.GetComponent<BezierCollider2D>().calculate2DPoints();
 		slopes.Add(newSlope.transform);
-//		print("position" + newSlope.transform.position + "p1 : " + bezier.firstPoint + "p2:" + bezier.handlerFirstPoint+ "p3 " + bezier.handlerSecondPoint + "p4: " +bezier.secondPoint);
 	}
 
 	// basically if the character gets within render distance
 	//of the next chunk, generate a chunk that starts on the
 	// end point of the last one and has procedurally generated
 	//attributes. 
-	//so basically if the slope between handler second and second
-	//matches the slope from handler first to first of the next line it looks fine. 
 	void FixedUpdate ()
 	{
 		score = (int)transform.position.magnitude;

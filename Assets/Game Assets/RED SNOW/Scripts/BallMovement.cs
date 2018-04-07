@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMovement : MonoBehaviour {
+public class BallMovement : MonoBehaviour
+ {
 	Rigidbody2D rb ;
     float AngularSpeedTarget;
 	float angularD;
@@ -25,6 +26,7 @@ public class BallMovement : MonoBehaviour {
 			rb = GetComponent<Rigidbody2D>();
 		}
 		rb.angularVelocity = AngularSpeedTarget;
+		
 		
 		//rb.AddForce(getNormal().normalized*700*Time.deltaTime);
 	}

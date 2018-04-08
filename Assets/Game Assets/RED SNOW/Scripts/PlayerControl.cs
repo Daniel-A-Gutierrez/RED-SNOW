@@ -51,6 +51,7 @@ public class PlayerControl : MonoBehaviour
 	GameObject player;
 	Vector2 normal;
 	bool grounded = true;
+	public RaycastHit2D hit;
 
 	public float speedTarget;	
 	float angularSpeedTarget;
@@ -80,20 +81,7 @@ public class PlayerControl : MonoBehaviour
 				dj.distance = .6f;
 			}
 	}
-	//returns the length and width of a rectangle with aspect ratio
-	// w2:1h  such that p lies on the border of the rectangle centered on c.
-	float CalculateZoom(Vector2 position, Vector2 cameraPos , Vector2 ortho)
-	{
-		Vector2 relativePos = position-cameraPos;
-		if(Mathf.Abs(relativePos.y/relativePos.x) > Mathf.Abs(ortho.x/ortho.y))
-		{
-			return Mathf.Abs(2*relativePos.y/ortho.y);
-		}
-		else
-		{
-			return Mathf.Abs(2*relativePos.x/ortho.x);
-		}
-	}
+
 	
 	void FixedUpdate ()
 	{
@@ -111,10 +99,10 @@ public class PlayerControl : MonoBehaviour
 			rb.angularVelocity = angularSpeedTarget*(.25f);
 		}
 		//i wonder if these transforms are affected by the local scale... 
-		if(Mathf.Abs( CalculateZoom(transform.position , cam.transform.position, new Vector2(12,6))) > 1)
-		{
-			cam.GetComponent<Camera>().orthographicSize = CalculateZoom(transform.position , cam.transform.position, new Vector2(12,6) ) *6;
-		}
+		// if(Mathf.Abs( CalculateZoom(transform.position , cam.transform.position, new Vector2(12,6))) > 1)
+		// {
+		// 	cam.GetComponent<Camera>().orthographicSize = CalculateZoom(transform.position , cam.transform.position, new Vector2(12,6) ) *6;
+		// }
 		
 /* i want jumping to be as follows : enable max distance only on the dist joint,
 	disable auto configure distance
@@ -127,11 +115,10 @@ public class PlayerControl : MonoBehaviour
  */
  		if(grounded == false)
 		{
-			RaycastHit2D hit = Physics2D.Raycast(transform.position,-Vector3.up, 1000, ground) ;
+			hit = Physics2D.Raycast(transform.position,-Vector3.up, 1000, ground) ;
 			if (hit.collider!=null)
 			{
 				dj.distance = 3*hit.distance+.2f;
-				
 			}
 		}
 		if(Input.GetKeyDown(KeyCode.Space)& grounded == true)
@@ -155,6 +142,6 @@ public class PlayerControl : MonoBehaviour
 	{
 		
 		player.transform.up = normal;
-		player.GetComponent<Follower>().offset = normal/transform.parent.localScale.magnitude*.9f;
+		//player.GetComponent<Follower>().offset = normal/transform.parent.localScale.magnitude*.9f;
 	}
 }

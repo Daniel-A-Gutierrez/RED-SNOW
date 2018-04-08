@@ -52,7 +52,8 @@ public class PlayerControl : MonoBehaviour
 	Vector2 normal;
 	bool grounded = true;
 	public RaycastHit2D hit;
-
+	bool dashed = false;
+	bool jumped = false;
 	public float speedTarget;	
 	float angularSpeedTarget;
 
@@ -76,10 +77,19 @@ public class PlayerControl : MonoBehaviour
 		if(grounded == false)
 			{
 				grounded = true;
+				jumped = false;
 				dj.maxDistanceOnly = false;
 				dj.autoConfigureDistance = false;
 				dj.distance = .6f;
 			}
+	}
+
+	void OnCollisionExit2D(Collision2D collision)
+	{
+		if(jumped)
+		{
+			grounded = false;
+		}
 	}
 
 	
@@ -121,6 +131,7 @@ public class PlayerControl : MonoBehaviour
 				dj.distance = 3*hit.distance+.2f;
 			}
 		}
+
 		if(Input.GetKeyDown(KeyCode.Space)& grounded == true)
 		{
 			grounded = false;
@@ -128,7 +139,16 @@ public class PlayerControl : MonoBehaviour
 			dj.autoConfigureDistance = false;
 			dj.distance = 10;
 			rb.AddForce(normal*15f/Time.deltaTime);
+			dashed = false;
+			jumped = true;
 		}
+		// i think this would be better with a coroutine that handles the transform. 
+		if(Input.GetKey(KeyCode.A)&Input.GetKey(KeyCode.LeftShift)& grounded == false & dashed == false)
+		{
+			rb.AddForce( new Vector2(-1,-1)*25f/Time.deltaTime);
+			dashed = true;
+		}
+
 		
 
 	}

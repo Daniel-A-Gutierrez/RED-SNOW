@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
  {
+	public RaycastHit2D hit;
+	public float speedTarget;	
+	public LayerMask ground;
+	 
 	GameObject guideWheel;
 	DistanceJoint2D dj;
 	Rigidbody2D rb;
-	BallMovement bm;
 	GameObject cam;
-	public LayerMask ground;
-	public float gravityMulti;
-	Collider2D[] colliders;
 	GameObject player;
 	Vector2 normal;
 	bool grounded = true;
-	public RaycastHit2D hit;
 	bool dashed = false;
 	bool jumped = false;
-	public float speedTarget;	
 	float angularSpeedTarget;
 
+	// note - the player must be the first object underneath the parent in the hierarchy. The ball must be second. 
 	void Start ()
 	{
 		player = transform.parent.GetChild(0).gameObject;
@@ -28,7 +27,6 @@ public class PlayerControl : MonoBehaviour
 		{
 			print("error, player isnt player: tag : " + player.tag);
 		}
-		bm = GetComponent<BallMovement>();
 		rb = GetComponent<Rigidbody2D>();
 		angularSpeedTarget = -speedTarget/(GetComponent<CircleCollider2D>().radius)*180/3.14159f;
 		dj = transform.GetChild(0).GetComponent<DistanceJoint2D>();
@@ -63,6 +61,7 @@ public class PlayerControl : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
+		// handle side to side movement
 		rb.angularVelocity = angularSpeedTarget;
 		if(rb == null)
 		{
@@ -77,15 +76,8 @@ public class PlayerControl : MonoBehaviour
 			rb.angularVelocity = angularSpeedTarget*(.25f);
 		}
 		
-/* i want jumping to be as follows : enable max distance only on the dist joint,
-	disable auto configure distance
-	set max distance to like 100,
-	apply a force in the opposite direction of the local transform  of the guidewheel,
-	while the button is still pressed down and the player has not contacted the ground keep same gravity, 
-	if they release the button before hitting the ground increase gravity 2x,
-	if they hit the ground set the distance joint back to its original constrant distance and disable max distance only and reenable auto distance and move the guideball closer.
-		
- */
+
+
  		if(grounded == false)
 		{
 			hit = Physics2D.Raycast(transform.position,-Vector3.up, 1000, ground);
@@ -94,6 +86,7 @@ public class PlayerControl : MonoBehaviour
 				dj.distance = 3*hit.distance+.2f;
 			}
 		}
+
 
 		if(Input.GetKeyDown(KeyCode.Space)& grounded == true)
 		{
@@ -124,7 +117,7 @@ public class PlayerControl : MonoBehaviour
 	{
 
 	}
-
+	//makes the player seem like theyre actually riding a slope. 
 	void LateUpdate()
 	{		
 		player.transform.up = normal;

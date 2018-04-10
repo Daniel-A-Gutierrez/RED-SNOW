@@ -12,6 +12,11 @@ public class SlopeManager : MonoBehaviour {
 	public float slopeDeclineFactor;
 	public float slopeTurbulenceFactor;
 	public float renderDistance;
+	public GameObject[] enemies;
+	public float spawnChance;
+	//0 to 1
+	public int enemyCount;
+
 	float originalRD;
 	// Use this for initialization
 	void Start ()
@@ -53,8 +58,38 @@ public class SlopeManager : MonoBehaviour {
 		bezier.secondPoint = new Vector2(length,decline *length);
 		bezier.pointsQuantity = (int)(density*(length));
 
-		newSlope.GetComponent<EdgeCollider2D>().points = newSlope.GetComponent<BezierCollider2D>().calculate2DPoints();
+		Vector2[] points = newSlope.GetComponent<BezierCollider2D>().calculate2DPoints();
+		newSlope.GetComponent<EdgeCollider2D>().points = points;
 		slopes.Add(newSlope.transform);
+
+		if(enemyCount < 15)
+		{
+			int spawnEnemy = (int)(spawnChance / Random.Range(0,1f));
+			enemyCount += spawnEnemy;
+			if(spawnEnemy>5)
+			{
+				spawnEnemy = 5;
+			}
+			if(spawnEnemy>0)
+			{
+				// get a list of all the points on the slope,
+				// pick spawnEnemy number randomly
+				// spawn random Enemies from Enemies at those points. 
+				List<int> pointIndex = new List<int>();
+				for(int i = 0 ; i < bezier.pointsQuantity ; i += 10)
+				{
+					pointIndex.Add(i);
+				}
+				
+				for(int i = 0 ; i < spawnEnemy ; i++)
+				{
+					Vector2 spawn = points[pointIndex[(int)Random.Range(0,pointIndex.Count) ] ] + new Vector2(0,.12f) + (Vector2)newSlope.transform.position ;
+					GameObject go = enemies[(int)Random.Range(0,enemies.Length)];
+					Instantiate (go, spawn,Quaternion.identity);
+				}
+
+			}
+		}
 	}
 
 	// basically if the character gets within render distance

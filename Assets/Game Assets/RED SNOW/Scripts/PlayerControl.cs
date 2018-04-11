@@ -31,11 +31,15 @@ public class PlayerControl : MonoBehaviour
 		angularSpeedTarget = -speedTarget/(GetComponent<CircleCollider2D>().radius)*180/3.14159f;
 		dj = transform.GetChild(0).GetComponent<DistanceJoint2D>();
 		cam = GameObject.FindGameObjectWithTag("MainCamera");
+		guideWheel = transform.GetChild(0).gameObject;
 	}
 
 	void OnCollisionStay2D(Collision2D collision)
-	{
-        normal = collision.contacts[0].normal;
+	{// inefficient
+		if(collision.gameObject.tag == "Slope")
+		{
+        	normal = collision.contacts[0].normal;
+		}
     }
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -46,7 +50,7 @@ public class PlayerControl : MonoBehaviour
 				jumped = false;
 				dj.maxDistanceOnly = false;
 				dj.autoConfigureDistance = false;
-				dj.distance = .6f;
+				dj.distance = .64f;
 			}
 	}
 

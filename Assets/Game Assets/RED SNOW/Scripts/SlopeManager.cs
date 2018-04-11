@@ -65,11 +65,12 @@ public class SlopeManager : MonoBehaviour {
 		if(enemyCount < 15)
 		{
 			int spawnEnemy = (int)(spawnChance / Random.Range(0,1f));
-			enemyCount += spawnEnemy;
 			if(spawnEnemy>5)
 			{
 				spawnEnemy = 5;
+				
 			}
+			enemyCount += spawnEnemy;
 			if(spawnEnemy>0)
 			{
 				// get a list of all the points on the slope,

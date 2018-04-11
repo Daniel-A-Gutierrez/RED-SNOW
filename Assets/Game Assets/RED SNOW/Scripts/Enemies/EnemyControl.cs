@@ -49,8 +49,10 @@ public class EnemyControl : MonoBehaviour
 
 	void OnCollisionStay2D(Collision2D collision)
 	{
-        normal = collision.contacts[0].normal;
+		if(collision.contacts != null && collision.contacts.Length>0)
+        	normal = collision.contacts[0].normal;
     }
+
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		if(grounded == false)
@@ -123,10 +125,15 @@ public class EnemyControl : MonoBehaviour
 
 			if(player.transform.position.y - transform.position.y > 100)
 			{
-				GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SlopeManager>().enemyCount --;
-				Destroy(gameObject.transform.parent.gameObject);
+				Die();
 			}
 		}
+	}
+
+	public void Die()
+	{
+		GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SlopeManager>().enemyCount --;
+		Destroy(gameObject.transform.parent.gameObject);
 	}
 
 	//makes the player seem like theyre actually riding a slope. 

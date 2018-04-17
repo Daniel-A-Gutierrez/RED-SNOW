@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlopeManager : MonoBehaviour {
 
+	GameObject playerContainer;
 	GameObject player;
 	public GameObject toInstantiate;
 	public int score;
@@ -21,6 +22,7 @@ public class SlopeManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
+		playerContainer = GameObject.FindGameObjectWithTag("PlayerContainer");
 		player = GameObject.FindGameObjectWithTag("Player");
 		slopes = new List<Transform>();
 		GameObject[] tarray =  GameObject.FindGameObjectsWithTag("Slope");
@@ -35,6 +37,8 @@ public class SlopeManager : MonoBehaviour {
 	{
 		renderDistance = originalRD*transform.localScale.magnitude;
 	}
+
+
 
 	void CreateSlope(Vector2 p0, float density)
 	{

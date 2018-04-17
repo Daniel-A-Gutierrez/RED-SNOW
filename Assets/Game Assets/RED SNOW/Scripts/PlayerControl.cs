@@ -120,11 +120,11 @@ public class PlayerControl : MonoBehaviour
 			rb.AddForce( new Vector2(-1,-1)*25f/Time.deltaTime);
 			dashed = true;
 		}
-		print(-normal*Mathf.Abs((virtualMass - normalImpulse))/Time.deltaTime);
+		
 		if(jumped==false)
 		{
 			//virtual mass style  rb.AddForce(-normal*Mathf.Abs((virtualMass - normalImpulse))/Time.deltaTime);
-			rb.AddForce(-normal*(1+hit.distance*hit.distance)*virtualMass/Time.deltaTime);
+			//rb.AddForce(-normal*(1+hit.distance*hit.distance)*virtualMass/Time.deltaTime);
 		}
 		
 

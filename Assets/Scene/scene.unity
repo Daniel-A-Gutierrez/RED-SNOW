@@ -177,6 +177,35 @@ Prefab:
       propertyPath: m_LinearDrag
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 50585435868685664, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 254041538961675832, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_CorrectionScale
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478146118782760, guid: 021e91af7b2694a488202c9b00433425, type: 2}
+      propertyPath: m_TagString
+      value: PlayerContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 50585435868685664, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50695159898181976, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50695159898181976, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 021e91af7b2694a488202c9b00433425, type: 2}
   m_IsPrefabParent: 0

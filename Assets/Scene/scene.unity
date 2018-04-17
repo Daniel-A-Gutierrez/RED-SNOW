@@ -157,6 +157,26 @@ Prefab:
       propertyPath: virtualMass
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 212984162559392452, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212493512155685778, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212604361734744930, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50695159898181976, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 021e91af7b2694a488202c9b00433425, type: 2}
   m_IsPrefabParent: 0

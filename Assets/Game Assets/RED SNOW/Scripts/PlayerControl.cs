@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
 	public float speedTarget;	
 	public LayerMask ground;
 	public float virtualMass;
+	public float jumpPower;
 	 
 	GameObject guideWheel;
 	DistanceJoint2D dj;
@@ -106,7 +107,7 @@ public class PlayerControl : MonoBehaviour
 			// dj.maxDistanceOnly = true;
 			// dj.autoConfigureDistance = false;
 			// dj.distance = 10;
-			rb.AddForce(normal*15f/Time.deltaTime);
+			rb.AddForce(jumpPower*normal*15f/Time.deltaTime);
 			dashed = false;
 			jumped = true;
 		}

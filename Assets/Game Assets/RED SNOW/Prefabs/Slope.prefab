@@ -153,6 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afae2609e310834994102f058142f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 3e3fbf41f7fdc8e408dd0b7152788a4e, type: 2}
+  mat: {fileID: 2100000, guid: be67611d035df3a4996837b3c94d3d58, type: 2}
   border: -50
   mesh: {fileID: 0}

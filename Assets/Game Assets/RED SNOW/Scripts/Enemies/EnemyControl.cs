@@ -115,9 +115,9 @@ public class EnemyControl : MonoBehaviour
 			{
 				jump = false;
 				grounded = false;
-				dj.maxDistanceOnly = true;
-				dj.autoConfigureDistance = false;
-				dj.distance = 10;
+				//dj.maxDistanceOnly = true;
+				//dj.autoConfigureDistance = false;
+				//dj.distance = 10;
 				rb.AddForce(normal*jumpForce/Time.deltaTime);
 				dashed = false;
 				jumped = true;

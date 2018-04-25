@@ -42,7 +42,9 @@ public class MeshGenerator : MonoBehaviour {
 
 		mesh.triangles = triangles.ToArray();
 		mesh.RecalculateNormals();
-		GetComponent<MeshRenderer>().material = mat;
+		MeshRenderer mr = GetComponent<MeshRenderer>();
+		mr.material = mat;
+		mr.sortingLayerName = "Ground";
 		GetComponent<MeshFilter>().mesh = mesh;
 	}
 }

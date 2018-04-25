@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
 	public LayerMask ground;
 	public float virtualMass;
 	public float jumpPower;
-	 
+	public State state;
 	GameObject guideWheel;
 	DistanceJoint2D dj;
 	Rigidbody2D rb;
@@ -83,10 +83,12 @@ public class PlayerControl : MonoBehaviour
 		if(Input.GetAxis("Horizontal") > .1f &((transform.position - cam.transform.position).x < 6))
 		{
 			rb.angularVelocity = angularSpeedTarget*(1.75f);
+			state.playerLeft = false;
 		}
 		if(Input.GetAxis("Horizontal") < -.1f & ((transform.position - cam.transform.position).x > -6)  )
 		{
 			rb.angularVelocity = angularSpeedTarget*(.25f);
+			state.playerLeft = true;
 		}
 		
 

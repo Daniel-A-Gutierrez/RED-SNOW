@@ -24,19 +24,16 @@ public class YetiEnemy : NinjaGuy
     public override void NinjaBehavior()
     {
         //Check if the Yeti has thrown a rock already and should move at the player like NinjaGuy
-        if (hasThrown)
-            base.NinjaBehavior();
+        base.NinjaBehavior();
 
-        else if (hasSeenPlayer)
-        {
+        if (hasSeenPlayer && !hasThrown)
             StartCoroutine("ThrowRock");
-        }
     }
 
     void CheckVisible()
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
-        if (GeometryUtility.TestPlanesAABB(planes, GetComponent<CircleCollider2D>().bounds) && ! hasSeenPlayer)
+        if (GeometryUtility.TestPlanesAABB(planes, GetComponent<CircleCollider2D>().bounds) && !hasSeenPlayer)
         {
             hasSeenPlayer = true;
         }

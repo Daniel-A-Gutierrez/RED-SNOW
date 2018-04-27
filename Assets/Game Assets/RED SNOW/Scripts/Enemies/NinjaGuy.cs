@@ -19,7 +19,6 @@ public class NinjaGuy : MonoBehaviour
 	void Update ()
 	{
         NinjaBehavior();
-		
 	}
 
     public virtual void NinjaBehavior()

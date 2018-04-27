@@ -43,13 +43,12 @@ public class YetiEnemy : NinjaGuy
     {
 
         GameObject rock = Instantiate(rockPrefab,this.transform.position, Quaternion.Euler(0,0,0), this.transform);
-        
+        rock.GetComponent<FixedJoint2D>().connectedBody = rock.transform.parent.GetComponent<Rigidbody2D>();
         hasThrown = true;
 
  
         yield return new WaitForSeconds(0.75f);
 
-        rock.AddComponent<Rigidbody2D>();
 
         Rigidbody2D rb = rock.GetComponent<Rigidbody2D>();
         target = player.transform;

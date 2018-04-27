@@ -340,7 +340,6 @@ MonoBehaviour:
   slopeTurbulenceFactor: 0.2
   renderDistance: 90
   enemies:
-  - {fileID: 1903580141380960, guid: f7729ca4f1102bb49bbe60663f23fd8f, type: 2}
   - {fileID: 1903580141380960, guid: 4bae58e5a1916b840bae177f117f61cd, type: 2}
   spawnChance: 0.5
   enemyCount: 0

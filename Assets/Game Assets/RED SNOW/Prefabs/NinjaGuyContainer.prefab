@@ -199,7 +199,7 @@ Transform:
   m_GameObject: {fileID: 1093788561784230}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 1, z: 0.10000036}
+  m_LocalScale: {x: 0.35, y: 1, z: 0.10000036}
   m_Children: []
   m_Father: {fileID: 4968946456832834}
   m_RootOrder: 0
@@ -474,8 +474,6 @@ MonoBehaviour:
   forwardSpeedModifier: 0.75
   backwardSpeedModifier: 0.5
   jumpForce: 20
-  splatter: {fileID: 1885137170523930, guid: d195dbf9b3cf71542ac31a0760a6ff0b, type: 2}
-  ninja: {fileID: 1352447290770170}
 --- !u!114 &114598264920678476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -595,7 +593,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 60
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1107,7 +1105,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 40
       minScalar: 10
       maxCurve:
         serializedVersion: 2

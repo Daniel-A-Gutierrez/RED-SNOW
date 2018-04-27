@@ -11,7 +11,6 @@ public class EnemyControl : MonoBehaviour
 	public float forwardSpeedModifier;
 	public float backwardSpeedModifier;
 	public float jumpForce;
-	public GameObject ninja;
 	 
 	GameObject player;
 	GameObject guideWheel;
@@ -134,10 +133,10 @@ public class EnemyControl : MonoBehaviour
 	public void Die()
 	{
 		GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SlopeManager>().enemyCount --;
-		GameObject splatter = ninja.transform.GetChild(1).gameObject;
+		GameObject splatter = transform.parent.GetChild(0).GetChild(1).gameObject;
 		splatter.SetActive(true);
 		splatter.GetComponent<BloodSplatter>().beginSpray();
-		Destroy(ninja);
+		Destroy(gameObject.transform.parent.GetChild(0).gameObject);
 		Destroy(gameObject);
 	}
 

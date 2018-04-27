@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 61086357981824256}
   - component: {fileID: 254041538961675832}
   - component: {fileID: 114114452456655360}
+  - component: {fileID: 114236359080582474}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -409,6 +410,18 @@ MonoBehaviour:
   particleSystem: {fileID: 198588553143449998}
   triggerHeight: 1
   triggerVelocity: 10
+--- !u!114 &114236359080582474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694820127878964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d3086614e0b2f4284a31b5b89451b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLeft: 0
 --- !u!114 &114341320017200900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopHeight: 1.5
-  playerState: {fileID: 0}
+  playerState: {fileID: 114236359080582474}
 --- !u!114 &114351761753521840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -464,7 +477,7 @@ MonoBehaviour:
     m_Bits: 256
   virtualMass: 1.5
   jumpPower: 1.5
-  state: {fileID: 0}
+  state: {fileID: 114236359080582474}
 --- !u!198 &198107449465846004
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -142,4 +142,9 @@ public class PlayerControl : MonoBehaviour
 	{		
 		player.transform.up = normal;
 	}
+
+    public void Die()
+    {
+        Debug.Log("You Died");
+    }
 }

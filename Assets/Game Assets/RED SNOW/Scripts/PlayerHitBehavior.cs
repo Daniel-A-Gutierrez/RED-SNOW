@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitBehavior : MonoBehaviour
+public class PlayerHitBehavior : MonoBehaviour
 {
-	public int HP;
+	public int HP = 1;
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		// do other stuff that happens when it dies
@@ -16,7 +16,7 @@ public class HitBehavior : MonoBehaviour
 		else
 		{
 			//do death stuff
-			transform.parent.parent.GetChild(1).GetComponent<EnemyControl>().Die();
+			transform.parent.parent.GetChild(1).GetComponent<PlayerControl>().Die();
 		}
 	}
 

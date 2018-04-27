@@ -11,6 +11,7 @@ public class EnemyControl : MonoBehaviour
 	public float forwardSpeedModifier;
 	public float backwardSpeedModifier;
 	public float jumpForce;
+	public GameObject ninja;
 	 
 	GameObject player;
 	GameObject guideWheel;
@@ -133,8 +134,14 @@ public class EnemyControl : MonoBehaviour
 	public void Die()
 	{
 		GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SlopeManager>().enemyCount --;
-		Destroy(gameObject.transform.parent.gameObject);
+		GameObject splatter = ninja.transform.GetChild(1).gameObject;
+		splatter.SetActive(true);
+		splatter.GetComponent<BloodSplatter>().beginSpray();
+		Destroy(ninja);
+		Destroy(gameObject);
 	}
+
+	
 
 	//makes the player seem like theyre actually riding a slope. 
 	void LateUpdate()

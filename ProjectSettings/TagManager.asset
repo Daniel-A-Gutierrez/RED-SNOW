@@ -20,13 +20,13 @@ TagManager:
   - Ground
   - Wheel
   - PlayerBump
-  - CharacterUpperBody
+  - EnemyHit
   - Screen
   - Bullet
   - Hazard
   - Items
   - EnemyBump
-  - 
+  - PlayerHit
   - 
   - 
   - 

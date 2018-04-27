@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4137492298925306, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 021e91af7b2694a488202c9b00433425, type: 2}
@@ -246,7 +246,7 @@ MonoBehaviour:
   slopeTurbulenceFactor: 0.2
   renderDistance: 90
   enemies:
-  - {fileID: 1541131541020786, guid: f7729ca4f1102bb49bbe60663f23fd8f, type: 2}
+  - {fileID: 0}
   spawnChance: 0.1
   enemyCount: 0
 --- !u!114 &651450203
@@ -281,7 +281,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

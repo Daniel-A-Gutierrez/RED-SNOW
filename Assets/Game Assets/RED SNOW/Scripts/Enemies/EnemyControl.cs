@@ -131,12 +131,16 @@ public class EnemyControl : MonoBehaviour
 	public void Die()
 	{
 		GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SlopeManager>().enemyCount --;
-		GameObject splatter = transform.parent.GetChild(0).GetChild(1).gameObject;
-		if(splatter) {
-			splatter.SetActive(true);
-			splatter.GetComponent<BloodSplatter>().beginSpray();
+		if(transform.parent.childCount > 0)
+		{
+			if(transform.parent.GetChild(0).childCount > 1)
+			{
+				GameObject splatter = transform.parent.GetChild(0).GetChild(1).gameObject;
+				splatter.SetActive(true);
+				splatter.GetComponent<BloodSplatter>().beginSpray();
+			}
+			Destroy(transform.parent.GetChild(0).gameObject);
 		}
-		Destroy(gameObject.transform.parent.GetChild(0).gameObject);
 		Destroy(gameObject);
 	}
 

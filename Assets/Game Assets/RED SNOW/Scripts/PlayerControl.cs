@@ -10,7 +10,6 @@ public class PlayerControl : MonoBehaviour
 	public float virtualMass;
 	public float jumpPower;
 	public State state;
-	GameObject guideWheel;
 	DistanceJoint2D dj;
 	Rigidbody2D rb;
 	GameObject cam;
@@ -20,7 +19,6 @@ public class PlayerControl : MonoBehaviour
 	bool dashed = false;
 	bool jumped = false;
 	float angularSpeedTarget;
-	float normalImpulse;
 	
 
 	// note - the player must be the first object underneath the parent in the hierarchy. The ball must be second. 
@@ -35,7 +33,6 @@ public class PlayerControl : MonoBehaviour
 		angularSpeedTarget = -speedTarget/(GetComponent<CircleCollider2D>().radius)*180/3.14159f;
 		dj = transform.GetChild(0).GetComponent<DistanceJoint2D>();
 		cam = GameObject.FindGameObjectWithTag("MainCamera");
-		guideWheel = transform.GetChild(0).gameObject;
 		if(virtualMass == 0)
 		{
 			virtualMass = 3;
@@ -47,7 +44,6 @@ public class PlayerControl : MonoBehaviour
 		if(collision.gameObject.tag == "Slope")
 		{
         	normal = collision.contacts[0].normal;
-			normalImpulse = collision.contacts[0].normalImpulse;
 		}
     }
 

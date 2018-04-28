@@ -6,7 +6,6 @@ public class BallMovement : MonoBehaviour
  {
 	Rigidbody2D rb ;
     float AngularSpeedTarget;
-	float angularD;
 	float angularV;
 	public float speedTarget;
 	// Use this for initialization
@@ -14,8 +13,6 @@ public class BallMovement : MonoBehaviour
 	//i should set bounds relative to those numbers.
 	void Start ()
 	{
-		Rigidbody2D rb = GetComponent<Rigidbody2D>();
-		angularD = rb.angularDrag;
 		AngularSpeedTarget = -speedTarget/(GetComponent<CircleCollider2D>().radius)*180/3.14159f;
 	}
 	// Update is called once per frame

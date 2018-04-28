@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SlopeManager : MonoBehaviour {
-
-	GameObject playerContainer;
 	GameObject player;
 	public GameObject toInstantiate;
 	public int score;
@@ -22,8 +20,7 @@ public class SlopeManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		playerContainer = GameObject.FindGameObjectWithTag("PlayerContainer");
-		player = GameObject.FindGameObjectWithTag("Player");
+		player = GameObject.FindGameObjectWithTag("Finish");
 		slopes = new List<Transform>();
 		GameObject[] tarray =  GameObject.FindGameObjectsWithTag("Slope");
 		foreach (GameObject g in tarray)
@@ -47,13 +44,11 @@ public class SlopeManager : MonoBehaviour {
 		BezierCollider2D bezier = newSlope.GetComponent<BezierCollider2D>();
 		BezierCollider2D previousBezier = slopes[slopes.Count-1].GetComponent<BezierCollider2D>();
 		Vector2 d00 = previousBezier.getLastDerivative();
-		Vector2 d3 = previousBezier.secondPoint;
 		float decline = slopeDeclineFactor*Random.Range(-.2f,1.5f);
 		float length = slopeLengthFactor*Random.Range(.25f,2);
 		float turbulence = slopeTurbulenceFactor*Random.Range(0,2);
 		float deviation1 = Random.Range(.2f,.7f);
 		float deviation2 = Random.Range(deviation1,.8f);
-		float regressive1 = Random.Range(-length*turbulence,length*turbulence);
 		float regressive2 = Random.Range(-length*turbulence,length*turbulence);
 
 		bezier.firstPoint = new Vector2(0,0);
@@ -106,7 +101,6 @@ public class SlopeManager : MonoBehaviour {
 		score = (int)transform.position.magnitude;
 		if(slopes[slopes.Count-1].position.x-player.transform.position.x < renderDistance)
 		{
-
 			CreateSlope(slopes[slopes.Count-1].GetComponent<BezierCollider2D>().secondPoint + 
 			new Vector2 ( slopes[slopes.Count-1].transform.position.x ,slopes[slopes.Count-1].transform.position.y) , 7.5f);
 		}

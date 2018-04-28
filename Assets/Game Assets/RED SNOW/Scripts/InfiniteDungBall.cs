@@ -7,11 +7,6 @@ public class InfiniteDungBall : MonoBehaviour {
 	Rigidbody2D rb;
 	public float assist = 1;
 	public float targetSpeed;
-	// Use this for initialization
-	void Start ()
-	{
-		Rigidbody2D rb = GetComponent<Rigidbody2D>();
-	}
 	
 	// Update is called once per frame
 	void FixedUpdate ()

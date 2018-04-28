@@ -20,7 +20,6 @@ public class EnemyControl : MonoBehaviour
 	GameObject enemy;
 	Vector2 normal;
 	bool grounded = true;
-	bool dashed = false;
 	bool jumped = false;
 	float angularSpeedTarget;
 
@@ -119,7 +118,6 @@ public class EnemyControl : MonoBehaviour
 				//dj.autoConfigureDistance = false;
 				//dj.distance = 10;
 				rb.AddForce(normal*jumpForce/Time.deltaTime);
-				dashed = false;
 				jumped = true;
 			}
 
@@ -134,8 +132,10 @@ public class EnemyControl : MonoBehaviour
 	{
 		GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SlopeManager>().enemyCount --;
 		GameObject splatter = transform.parent.GetChild(0).GetChild(1).gameObject;
-		splatter.SetActive(true);
-		splatter.GetComponent<BloodSplatter>().beginSpray();
+		if(splatter) {
+			splatter.SetActive(true);
+			splatter.GetComponent<BloodSplatter>().beginSpray();
+		}
 		Destroy(gameObject.transform.parent.GetChild(0).gameObject);
 		Destroy(gameObject);
 	}

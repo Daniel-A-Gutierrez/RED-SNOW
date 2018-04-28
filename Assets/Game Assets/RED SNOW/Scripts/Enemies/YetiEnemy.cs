@@ -11,7 +11,6 @@ public class YetiEnemy : NinjaGuy
 
     Transform target;
     Transform throwPoint;
-    float xV, yV, timeToHit = 1.5f;
     public GameObject rockPrefab;
 
     // Update is called once per frame
@@ -55,11 +54,6 @@ public class YetiEnemy : NinjaGuy
         throwPoint = rock.transform;
         float x = target.position.x - throwPoint.position.x;
         float y = target.position.y - throwPoint.position.y;
-
-        float angle = Mathf.Atan((y + 4.905f) / x);
-        float v = x / Mathf.Cos(angle);
-        xV = v * Mathf.Cos(angle);
-        yV = v * Mathf.Sin(angle);
 
         rb.velocity = new Vector2(x, y);
 

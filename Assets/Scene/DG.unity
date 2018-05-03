@@ -140,7 +140,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &26428372
 MonoBehaviour:
@@ -191,8 +191,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4137492298925306, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114890434443360620, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 26428372}
+    - target: {fileID: 114341320017200900, guid: 021e91af7b2694a488202c9b00433425,
+        type: 2}
+      propertyPath: playerState
+      value: 
+      objectReference: {fileID: 26428372}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 021e91af7b2694a488202c9b00433425, type: 2}
   m_IsPrefabParent: 0
@@ -330,8 +340,8 @@ MonoBehaviour:
   slopeTurbulenceFactor: 0.2
   renderDistance: 90
   enemies:
-  - {fileID: 1903580141380960, guid: 4bae58e5a1916b840bae177f117f61cd, type: 2}
-  spawnChance: 0.5
+  - {fileID: 1903580141380960, guid: f7729ca4f1102bb49bbe60663f23fd8f, type: 2}
+  spawnChance: 0.1
   enemyCount: 0
 --- !u!114 &651450203
 MonoBehaviour:
@@ -377,7 +387,7 @@ RectTransform:
   m_Children:
   - {fileID: 2085477814}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -666,7 +676,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4730478386442418, guid: f7729ca4f1102bb49bbe60663f23fd8f, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7729ca4f1102bb49bbe60663f23fd8f, type: 2}

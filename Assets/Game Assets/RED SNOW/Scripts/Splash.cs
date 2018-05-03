@@ -14,7 +14,6 @@ public class Splash : MonoBehaviour {
 	private ParticleSystem.ForceOverLifetimeModule fom;
 	private Vector2 defaultForce;
 	private Rigidbody2D playerRb;
-	private BoxCollider2D playerColl;
 	private bool splashTriggered = false;
 
 	void Start()
@@ -24,7 +23,6 @@ public class Splash : MonoBehaviour {
 		em = particleSystem.emission;
 		em.enabled = false;
 		noiseModule = particleSystem.noise;
-		playerColl = GetComponent<BoxCollider2D>();
 		fom = particleSystem.forceOverLifetime;
 		defaultForce = new Vector2(fom.x.constant, fom.y.constant);
 	}

@@ -144,9 +144,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4730478386442418}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: NinjaGuyContainer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -485,6 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c8061ccb435424a892cb97584a2613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!198 &198416359323579732
 ParticleSystem:
   m_ObjectHideFlags: 1

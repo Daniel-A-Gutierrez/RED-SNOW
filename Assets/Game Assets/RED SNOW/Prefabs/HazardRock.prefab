@@ -35,7 +35,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4404157531057970}
   - component: {fileID: 212729293041899800}
-  - component: {fileID: 114116584260812772}
+  - component: {fileID: 114665642064269718}
+  - component: {fileID: 60517734627897270}
   m_Layer: 14
   m_Name: Boulder
   m_TagString: Untagged
@@ -70,7 +71,44 @@ Transform:
   m_Father: {fileID: 4136904004163224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114116584260812772
+--- !u!60 &60517734627897270
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1524843412529806}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.56}
+    newSize: {x: 0.64, y: 0.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.22, y: 0.24}
+      - {x: 0.12, y: 0.28}
+      - {x: -0.07, y: 0.28}
+      - {x: -0.22999999, y: 0.21}
+      - {x: -0.32, y: 0.089999996}
+      - {x: -0.32, y: -0.089999996}
+      - {x: -0.31, y: -0.11}
+      - {x: -0.22999999, y: -0.24}
+      - {x: 0.03, y: -0.28}
+      - {x: 0.21, y: -0.28}
+      - {x: 0.28, y: -0.14999999}
+      - {x: 0.32, y: -0.03}
+      - {x: 0.32, y: 0.089999996}
+--- !u!114 &114665642064269718
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -78,9 +116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1524843412529806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56abab72471f24d50b7e1695855c0b3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d4f0b38a940d4dcca661bf865c5b160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boulder: {fileID: 0}
 --- !u!212 &212729293041899800
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -94,7 +133,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

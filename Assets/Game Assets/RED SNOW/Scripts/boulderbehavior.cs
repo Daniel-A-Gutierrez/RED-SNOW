@@ -2,9 +2,13 @@
 
 public class boulderbehavior : MonoBehaviour {
 
+    public GameObject boulder;
+
     // Use this for initialization
     void Start()
     {
+            boulder = Resources.Load("boulder") as GameObject;
+       
 
     }
 
@@ -16,9 +20,18 @@ public class boulderbehavior : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "Player")
+        try
         {
-            Die();
+
+
+            if (other.gameObject.name == "Player")
+            {
+                // Die();
+            }
+        }
+        catch 
+        {
+            print()
         }
     }
     public void Die()

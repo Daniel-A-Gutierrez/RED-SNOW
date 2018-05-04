@@ -68,7 +68,7 @@
 				// sample the texture
 				float2 uv = float2(i.texcoord.x - _Time.x / (_Order * 10), i.texcoord.y);
 				fixed4 col = SampleSpriteTexture(uv);
-				col.r = 0.;
+				col.r = .3;
 				return fixed4(col.a * col.rgb / _Order, col.a);
 			}
 			ENDCG

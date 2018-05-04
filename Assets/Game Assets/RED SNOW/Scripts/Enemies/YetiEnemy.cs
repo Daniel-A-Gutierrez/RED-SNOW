@@ -12,7 +12,7 @@ public class YetiEnemy : NinjaGuy
     Transform target;
     Transform throwPoint;
     public GameObject rockPrefab;
-
+    public float rockLifetime = 3.0f;
     // Update is called once per frame
     void Update()
     {
@@ -57,6 +57,10 @@ public class YetiEnemy : NinjaGuy
 
         rb.velocity = new Vector2(x, y);
 
+
+        yield return new WaitForSeconds(rockLifetime);
+
+        Destroy(rock);
 
         yield return null;
 

@@ -1,8 +1,8 @@
-﻿Shader "Sprites/Parallax"
+﻿Shader "Sprites/Skylight"
 {
 	Properties
 	{
-		_MainTex ("Sprite Texture", 2D) = "white" {}
+		_NoiseTex ("Noise Texture", 2D) = "white" {}
 		_Order ("Order", Int) = 1
 	}
 	SubShader
@@ -37,39 +37,30 @@
 				float2 texcoord  : TEXCOORD0;
 			};
 
-			float4 _MainTex_ST;
+			float4 _NoiseTex_ST;
 			float _Order;
 			float _PlayerSpeed;
-			sampler2D _MainTex;
+			sampler2D _NoiseTex;
 
 			v2f vert (appdata v)
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
-				v.uv.y = 1. - v.uv.y;
-				o.texcoord = TRANSFORM_TEX(v.uv, _MainTex);
+				o.texcoord = TRANSFORM_TEX(v.uv, _NoiseTex);
+				o.texcoord.y = 1. - o.texcoord.y;
 				return o;
 			}
-			
-			fixed4 SampleSpriteTexture (float2 uv)
-			{
-				fixed4 color = tex2D (_MainTex, uv);
-
-				#if UNITY_TEXTURE_ALPHASPLIT_ALLOWED
-				if (_AlphaSplitEnabled)
-					color.a = tex2D (_AlphaTex, uv).r;
-				#endif //UNITY_TEXTURE_ALPHASPLIT_ALLOWED
-
-				return color;
-}
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				float2 uv = float2(i.texcoord.x - _Time.x / (_Order * 10), i.texcoord.y);
-				fixed4 col = SampleSpriteTexture(uv);
-				col.r = 0.;
-				return fixed4(col.a * col.rgb / _Order, col.a);
+				float noise_low = clamp(tex2D(_NoiseTex, float2(i.texcoord.x * .025 - _Time.x * .001, .5).r), .5, 1.);
+				float noise_mid = .5 * clamp(tex2D(_NoiseTex, float2(i.texcoord.x * .25 - _Time.x * .01, .5).r), .5, 1.);
+				float noise_high = .05 * clamp(tex2D(_NoiseTex, float2(i.texcoord.x * 2.5 - _Time.x, .05).r), .5, 1.);
+				float noise = (noise_low + noise_mid + noise_high) * .7;
+				fixed4 col = fixed4(0., 0., 0., 0.);
+				float ipol = smoothstep(i.texcoord.y / noise, 0., .5);
+				return pow(lerp(col, ipol, .6), .5);
 			}
 			ENDCG
 		}

@@ -54,11 +54,13 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				float noise = clamp(tex2D(_NoiseTex, float2(i.texcoord.x * .0025 - _Time.x * .01, .5).r), .5, 1.);
-				fixed4 col = i.texcoord.y < noise ? fixed4(1., 1., 1., 1.) : fixed4(0., 0., 0., 0.);
-				if((noise - i.texcoord.y) / i.texcoord.y < .8)
-					col *= .5;
-				return col;
+				float noise_low = clamp(tex2D(_NoiseTex, float2(i.texcoord.x * .0025 - _Time.x * .01, .5).r), .5, 1.);
+				float noise_mid = .5 * clamp(tex2D(_NoiseTex, float2(i.texcoord.x * .025 - _Time.x * .1, .5).r), .5, 1.);
+				float noise_high = .05 * clamp(tex2D(_NoiseTex, float2(i.texcoord.x * .25 - _Time.x, .5).r), .5, 1.);
+				float noise = (noise_low + noise_mid + noise_high) * .7;
+				fixed4 col = fixed4(0., 0., 0., 0.);
+				float ipol = smoothstep(i.texcoord.y / noise, 0., .5);
+				return pow(lerp(col, ipol, .6), .5);
 			}
 			ENDCG
 		}

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BloodSplatter : MonoBehaviour {
+	private new GameObject camera;
 	private Rigidbody2D playerRb;
+	private SlopeManager slopeManager;
 	void Start()
 	{
+		camera = GameObject.FindGameObjectWithTag("MainCamera");
 		playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+		slopeManager = camera.GetComponent<SlopeManager>();
 	}
 	public void beginSpray()
 	{
@@ -22,6 +26,8 @@ public class BloodSplatter : MonoBehaviour {
 		yield return new WaitForSeconds(.25f);
 		spray.Stop();
 		yield return new WaitForSeconds(1f);
+		while((transform.position - camera.transform.position).magnitude < slopeManager.renderDistance)
+			yield return new WaitForSeconds(1f);
 		Destroy(gameObject.transform.parent.gameObject);
 	}
 }

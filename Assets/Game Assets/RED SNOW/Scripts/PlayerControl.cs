@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
 	bool grounded = true;
 	bool dashed = false;
 	bool jumped = false;
+    bool dead = false;
 	float angularSpeedTarget;
 	
 
@@ -70,6 +71,8 @@ public class PlayerControl : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
+        if (dead)
+            return;
 		// handle side to side movement
 		rb.angularVelocity = angularSpeedTarget;
 		if(rb == null)
@@ -143,5 +146,7 @@ public class PlayerControl : MonoBehaviour
     {
         //Calls function for the Canvas to fade-in the death screen
         GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIBehavior>().SetDead();
+        angularSpeedTarget = 0f;
+        dead = true;
     }
 }

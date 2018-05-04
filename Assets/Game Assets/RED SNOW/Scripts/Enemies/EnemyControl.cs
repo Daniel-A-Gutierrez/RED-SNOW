@@ -20,7 +20,6 @@ public class EnemyControl : MonoBehaviour
 	GameObject enemy;
 	Vector2 normal;
 	bool grounded = true;
-	bool dashed = false;
 	bool jumped = false;
 	float angularSpeedTarget;
 
@@ -115,11 +114,10 @@ public class EnemyControl : MonoBehaviour
 			{
 				jump = false;
 				grounded = false;
-				dj.maxDistanceOnly = true;
-				dj.autoConfigureDistance = false;
-				dj.distance = 10;
+				//dj.maxDistanceOnly = true;
+				//dj.autoConfigureDistance = false;
+				//dj.distance = 10;
 				rb.AddForce(normal*jumpForce/Time.deltaTime);
-				dashed = false;
 				jumped = true;
 			}
 
@@ -133,8 +131,20 @@ public class EnemyControl : MonoBehaviour
 	public void Die()
 	{
 		GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SlopeManager>().enemyCount --;
-		Destroy(gameObject.transform.parent.gameObject);
+		if(transform.parent.childCount > 0)
+		{
+			if(transform.parent.GetChild(0).childCount > 1)
+			{
+				GameObject splatter = transform.parent.GetChild(0).GetChild(1).gameObject;
+				splatter.SetActive(true);
+				splatter.GetComponent<BloodSplatter>().beginSpray();
+			}
+			Destroy(transform.parent.GetChild(0).gameObject);
+		}
+		Destroy(gameObject);
 	}
+
+	
 
 	//makes the player seem like theyre actually riding a slope. 
 	void LateUpdate()

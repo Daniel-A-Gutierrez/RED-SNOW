@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof (EnemyControl))]
 public class NinjaGuy : MonoBehaviour
 {
-	GameObject player;
+    [HideInInspector]
+    public GameObject player;
 	EnemyControl enemyControl;
 	// Use this for initialization
 	void Start ()
@@ -17,18 +18,22 @@ public class NinjaGuy : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if((player.transform.position - transform.position).x > 2 )
-		{
-			enemyControl.SetInputAxis(1);
-		}
-		if((player.transform.position - transform.position).x < -2 )
-		{
-			enemyControl.SetInputAxis(-1);
-		}
-		if(Mathf.Abs((player.transform.position - transform.position).x) < 2 )
-		{
-			enemyControl.SetInputAxis(0);
-		}
-		
+        NinjaBehavior();
 	}
+
+    public virtual void NinjaBehavior()
+    {
+        if ((player.transform.position - transform.position).x > 2)
+        {
+            enemyControl.SetInputAxis(1);
+        }
+        if ((player.transform.position - transform.position).x < -2)
+        {
+            enemyControl.SetInputAxis(-1);
+        }
+        if (Mathf.Abs((player.transform.position - transform.position).x) < 2)
+        {
+            enemyControl.SetInputAxis(0);
+        }
+    }
 }

@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Slope
   - Enemy
+  - PlayerContainer
+  - ControlBall
   layers:
   - Default
   - TransparentFX
@@ -19,13 +21,13 @@ TagManager:
   - Ground
   - Wheel
   - PlayerBump
-  - CharacterUpperBody
+  - EnemyHit
   - Screen
   - Bullet
   - Hazard
   - Items
   - EnemyBump
-  - 
+  - PlayerHit
   - 
   - 
   - 
@@ -43,4 +45,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2896762041
+    locked: 0
+  - name: Particles
+    uniqueID: 3107469299
+    locked: 0
+  - name: Ground
+    uniqueID: 1920408313
     locked: 0

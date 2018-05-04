@@ -8,8 +8,8 @@ public class PlayerControl : MonoBehaviour
 	public float speedTarget;	
 	public LayerMask ground;
 	public float virtualMass;
-	 
-	GameObject guideWheel;
+	public float jumpPower;
+	public State state;
 	DistanceJoint2D dj;
 	Rigidbody2D rb;
 	GameObject cam;
@@ -19,7 +19,6 @@ public class PlayerControl : MonoBehaviour
 	bool dashed = false;
 	bool jumped = false;
 	float angularSpeedTarget;
-	float normalImpulse;
 	
 
 	// note - the player must be the first object underneath the parent in the hierarchy. The ball must be second. 
@@ -34,7 +33,6 @@ public class PlayerControl : MonoBehaviour
 		angularSpeedTarget = -speedTarget/(GetComponent<CircleCollider2D>().radius)*180/3.14159f;
 		dj = transform.GetChild(0).GetComponent<DistanceJoint2D>();
 		cam = GameObject.FindGameObjectWithTag("MainCamera");
-		guideWheel = transform.GetChild(0).gameObject;
 		if(virtualMass == 0)
 		{
 			virtualMass = 3;
@@ -46,7 +44,6 @@ public class PlayerControl : MonoBehaviour
 		if(collision.gameObject.tag == "Slope")
 		{
         	normal = collision.contacts[0].normal;
-			normalImpulse = collision.contacts[0].normalImpulse;
 		}
     }
 
@@ -82,10 +79,12 @@ public class PlayerControl : MonoBehaviour
 		if(Input.GetAxis("Horizontal") > .1f &((transform.position - cam.transform.position).x < 6))
 		{
 			rb.angularVelocity = angularSpeedTarget*(1.75f);
+			state.playerLeft = false;
 		}
 		if(Input.GetAxis("Horizontal") < -.1f & ((transform.position - cam.transform.position).x > -6)  )
 		{
 			rb.angularVelocity = angularSpeedTarget*(.25f);
+			state.playerLeft = true;
 		}
 		
 
@@ -106,7 +105,7 @@ public class PlayerControl : MonoBehaviour
 			// dj.maxDistanceOnly = true;
 			// dj.autoConfigureDistance = false;
 			// dj.distance = 10;
-			rb.AddForce(normal*15f/Time.deltaTime);
+			rb.AddForce(jumpPower*normal*15f/Time.deltaTime);
 			dashed = false;
 			jumped = true;
 		}
@@ -120,11 +119,11 @@ public class PlayerControl : MonoBehaviour
 			rb.AddForce( new Vector2(-1,-1)*25f/Time.deltaTime);
 			dashed = true;
 		}
-		print(-normal*Mathf.Abs((virtualMass - normalImpulse))/Time.deltaTime);
+		
 		if(jumped==false)
 		{
 			//virtual mass style  rb.AddForce(-normal*Mathf.Abs((virtualMass - normalImpulse))/Time.deltaTime);
-			rb.AddForce(-normal*(1+hit.distance*hit.distance)*virtualMass/Time.deltaTime);
+			//rb.AddForce(-normal*(1+hit.distance*hit.distance)*virtualMass/Time.deltaTime);
 		}
 		
 
@@ -139,4 +138,9 @@ public class PlayerControl : MonoBehaviour
 	{		
 		player.transform.up = normal;
 	}
+
+    public void Die()
+    {
+        Debug.Log("You Died");
+    }
 }

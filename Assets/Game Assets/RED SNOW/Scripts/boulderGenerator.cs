@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoulderSpawner : MonoBehaviour {
+public class boulderGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		boulder = GameObject.FindGameObjectWithTag ("Boulder");
 		
 	}
 	

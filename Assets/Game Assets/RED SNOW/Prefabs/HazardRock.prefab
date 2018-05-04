@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4136904004163224}
   m_Layer: 14
   m_Name: HazardRock
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,8 +36,6 @@ GameObject:
   - component: {fileID: 4404157531057970}
   - component: {fileID: 212729293041899800}
   - component: {fileID: 114116584260812772}
-  - component: {fileID: 114928271710137048}
-  - component: {fileID: 114886794292347164}
   m_Layer: 14
   m_Name: Boulder
   m_TagString: Untagged
@@ -83,28 +81,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56abab72471f24d50b7e1695855c0b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114886794292347164
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1524843412529806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56abab72471f24d50b7e1695855c0b3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114928271710137048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1524843412529806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56abab72471f24d50b7e1695855c0b3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212729293041899800
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,6 +94,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

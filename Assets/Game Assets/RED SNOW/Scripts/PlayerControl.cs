@@ -141,6 +141,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("You Died");
+        //Calls function for the Canvas to fade-in the death screen
+        GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIBehavior>().SetDead();
     }
 }

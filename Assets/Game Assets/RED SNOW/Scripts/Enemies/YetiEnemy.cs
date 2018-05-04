@@ -22,7 +22,7 @@ public class YetiEnemy : NinjaGuy
 
     public override void NinjaBehavior()
     {
-        //Check if the Yeti has thrown a rock already and should move at the player like NinjaGuy
+        //The Yeti will behave like a NinjaGuy, except for trying to throw a rock once.
         base.NinjaBehavior();
 
         if (hasSeenPlayer && !hasThrown)
@@ -31,6 +31,7 @@ public class YetiEnemy : NinjaGuy
 
     void CheckVisible()
     {
+        //Check if the Yeti is visible in the main camera
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
         if (GeometryUtility.TestPlanesAABB(planes, GetComponent<CircleCollider2D>().bounds) && !hasSeenPlayer)
         {
@@ -40,15 +41,15 @@ public class YetiEnemy : NinjaGuy
 
     IEnumerator ThrowRock()
     {
-
+        //Make instance of rock and attach to the Yeti
         GameObject rock = Instantiate(rockPrefab,this.transform.position, Quaternion.Euler(0,0,0), this.transform);
         rock.GetComponent<FixedJoint2D>().connectedBody = rock.transform.parent.GetComponent<Rigidbody2D>();
         hasThrown = true;
 
- 
+        
         yield return new WaitForSeconds(0.75f);
 
-
+        //Calculate how much velocity is needed to cross the distance between the rock and player
         Rigidbody2D rb = rock.GetComponent<Rigidbody2D>();
         target = player.transform;
         throwPoint = rock.transform;

@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class UIBehavior : MonoBehaviour {
 
     Animator c_animator;
-    public GameObject DiedPanel;
-    public Text DeadText;
 
     private void Start()
     {

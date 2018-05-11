@@ -105,15 +105,9 @@ public class SlopeManager : MonoBehaviour
                     pointIndex.Add(i);
                 }
                 Vector2 spawn_b = points[pointIndex[(int)Random.Range(0, pointIndex.Count)]] + new Vector2(0, .12f) + (Vector2)newSlope.transform.position;
-<<<<<<< HEAD
                 Instantiate(boulder, spawn_b, Quaternion.identity);
                 Vector2 spawn_r = points[pointIndex[(int)Random.Range(0, pointIndex.Count)]] + new Vector2(0, .12f) + (Vector2)newSlope.transform.position;
                 Instantiate(rocketBoostItem, spawn_r, Quaternion.identity);
-=======
-			Instantiate(boulder, spawn_b, Quaternion.identity);
-
-
->>>>>>> 7718cfe2ac8e1dbd83ec52ab1bb87fac715195b1
         }
 	}
 

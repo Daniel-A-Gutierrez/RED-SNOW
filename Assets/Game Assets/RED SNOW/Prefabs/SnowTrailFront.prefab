@@ -9,19 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1175745736889862}
+  m_RootGameObject: {fileID: 1593565061971606}
   m_IsPrefabParent: 1
---- !u!1 &1175745736889862
+--- !u!1 &1593565061971606
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4374457457645668}
-  - component: {fileID: 198892432531463866}
-  - component: {fileID: 199064065465104522}
-  - component: {fileID: 114097450226320510}
+  - component: {fileID: 4204435543849806}
+  - component: {fileID: 198330025520016700}
+  - component: {fileID: 199283158673478044}
+  - component: {fileID: 114515778905055768}
   m_Layer: 10
   m_Name: SnowTrailFront
   m_TagString: Untagged
@@ -29,12 +29,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4374457457645668
+--- !u!4 &4204435543849806
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1175745736889862}
+  m_GameObject: {fileID: 1593565061971606}
   m_LocalRotation: {x: -0, y: -0, z: -0.11738926, w: 0.993086}
   m_LocalPosition: {x: 0.1, y: 0, z: -0.5}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
@@ -42,25 +42,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.483001}
---- !u!114 &114097450226320510
+--- !u!114 &114515778905055768
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1175745736889862}
+  m_GameObject: {fileID: 1593565061971606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba6f136789681f418a7f430a6fa9faa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e722a149b9b4e145973d140b17225ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopHeight: 2
-  appearSpeed: 25
---- !u!198 &198892432531463866
+  stopHeight: 1.5
+  playerState: {fileID: 0}
+--- !u!198 &198330025520016700
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1175745736889862}
+  m_GameObject: {fileID: 1593565061971606}
   serializedVersion: 5
   lengthInSec: 10
   simulationSpeed: 1.5
@@ -115,7 +115,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -791752173
+  randomSeed: -1359441619
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3416,13 +3416,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &199064065465104522
+--- !u!199 &199283158673478044
 ParticleSystemRenderer:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1175745736889862}
+  m_GameObject: {fileID: 1593565061971606}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

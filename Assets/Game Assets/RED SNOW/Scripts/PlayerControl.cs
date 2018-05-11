@@ -10,6 +10,8 @@ public class PlayerControl : MonoBehaviour
 	public float virtualMass;
 	public float jumpPower;
 	public State state;
+	public float rocketBoostEffectTime;
+	public float rocketForceX, rocketForceY;
 	DistanceJoint2D dj;
 	Rigidbody2D rb;
 	GameObject cam;
@@ -92,9 +94,10 @@ public class PlayerControl : MonoBehaviour
 			state.playerLeft = true;
 		}
 		
-		if(state.isBoosted && Input.GetKey(KeyCode.R))
+		if(state.isBoosted && Input.GetKey(KeyCode.R)) {
+			
 			StartCoroutine(RocketBoost());
-
+		}
  		if(grounded == false)
 		{
 			hit = Physics2D.Raycast(transform.position,-Vector3.up, 1000, ground);
@@ -153,15 +156,15 @@ public class PlayerControl : MonoBehaviour
         dead = true;
     }
 
-	IEnumerator RocketBoost() {
-		state.boostDelay = state.isBoosted = false;
-		float effectTime = 1f;
+	IEnumerator RocketBoost() {	
+		state.isBoosted = false;
+		state.boostDelay = true;
+		float rocketBoostEffectTime = 1f;
 		thrust.SetActive(true);
-		for(float totalTime = 0f; totalTime < effectTime; totalTime += Time.deltaTime) {
-			rb.AddForce(new Vector2(20, 50));
+		for(float totalTime = 0f; totalTime < rocketBoostEffectTime; totalTime += Time.deltaTime) {
+			rb.AddForce(new Vector2(rocketForceX, rocketForceY));
 			yield return new WaitForFixedUpdate();
 		}
 		thrust.SetActive(false);
-		state.boostDelay = true;
 	}
 }

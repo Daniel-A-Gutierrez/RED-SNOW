@@ -9,6 +9,9 @@ public class RocketItemBehavior : MonoBehaviour {
 		state = GameObject.FindGameObjectWithTag("Player").GetComponent<State>();
 	}
 	void OnTriggerEnter2D(Collider2D col) {
-		state.isBoosted = (col.gameObject.tag == "Player") && state.boostDelay;
+		if(state.boostDelay && col.gameObject.tag == "Player") {
+			state.isBoosted = true;
+			state.boostDelay = false;
+		}
 	}
 }

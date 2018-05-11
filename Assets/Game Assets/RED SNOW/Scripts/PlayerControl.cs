@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
 	Rigidbody2D rb;
 	GameObject cam;
 	GameObject player;
+	GameObject thrust;
 	Vector2 normal;
 	bool grounded = true;
 	bool dashed = false;
@@ -38,6 +39,7 @@ public class PlayerControl : MonoBehaviour
 		{
 			virtualMass = 3;
 		}
+		thrust = transform.parent.GetChild(0).GetChild(4).gameObject;
 	}
 
 	void OnCollisionStay2D(Collision2D collision)
@@ -90,7 +92,8 @@ public class PlayerControl : MonoBehaviour
 			state.playerLeft = true;
 		}
 		
-
+		if(state.isBoosted && Input.GetKey(KeyCode.R))
+			StartCoroutine(RocketBoost());
 
  		if(grounded == false)
 		{
@@ -149,4 +152,16 @@ public class PlayerControl : MonoBehaviour
         angularSpeedTarget = 0f;
         dead = true;
     }
+
+	IEnumerator RocketBoost() {
+		state.boostDelay = state.isBoosted = false;
+		float effectTime = 1f;
+		thrust.SetActive(true);
+		for(float totalTime = 0f; totalTime < effectTime; totalTime += Time.deltaTime) {
+			rb.AddForce(new Vector2(20, 50));
+			yield return new WaitForFixedUpdate();
+		}
+		thrust.SetActive(false);
+		state.boostDelay = true;
+	}
 }

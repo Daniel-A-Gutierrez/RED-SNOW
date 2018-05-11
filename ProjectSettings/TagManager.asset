@@ -10,6 +10,7 @@ TagManager:
   - PlayerContainer
   - ControlBall
   - Canvas
+  - RocketItem
   layers:
   - Default
   - TransparentFX

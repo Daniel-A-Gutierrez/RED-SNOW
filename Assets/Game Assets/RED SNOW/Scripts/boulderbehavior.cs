@@ -31,7 +31,7 @@ public class boulderbehavior : MonoBehaviour {
         }
         catch 
         {
-            print()
+           
         }
     }
     public void Die()

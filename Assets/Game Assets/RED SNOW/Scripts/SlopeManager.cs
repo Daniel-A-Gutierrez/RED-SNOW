@@ -17,6 +17,7 @@ public class SlopeManager : MonoBehaviour
     //0 to 1
     public int enemyCount;
     public GameObject boulder; // ask about this - HLE
+    public GameObject rocketBoostItem;
     public int slopes_created = 0; // Since i didn't necessarily know about random generation, i decided to count the numebr of updates on the slopes to
                                    // to determine when to spawn a boulder - HLE
 
@@ -105,8 +106,8 @@ public class SlopeManager : MonoBehaviour
                 }
                 Vector2 spawn_b = points[pointIndex[(int)Random.Range(0, pointIndex.Count)]] + new Vector2(0, .12f) + (Vector2)newSlope.transform.position;
                 Instantiate(boulder, spawn_b, Quaternion.identity);
-
-
+                Vector2 spawn_r = points[pointIndex[(int)Random.Range(0, pointIndex.Count)]] + new Vector2(0, .12f) + (Vector2)newSlope.transform.position;
+                Instantiate(rocketBoostItem, spawn_r, Quaternion.identity);
         }
 	}
 

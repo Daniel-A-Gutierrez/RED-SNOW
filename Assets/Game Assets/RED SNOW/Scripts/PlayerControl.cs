@@ -12,11 +12,14 @@ public class PlayerControl : MonoBehaviour
 	public State state;
 	public float rocketBoostEffectTime;
 	public float rocketForceX, rocketForceY;
+	public float initThrustSizeMultiplier;
 	DistanceJoint2D dj;
 	Rigidbody2D rb;
 	GameObject cam;
 	GameObject player;
 	GameObject thrust;
+	ParticleSystem.MainModule [] particles;
+	float [] initParticleSizes;
 	Vector2 normal;
 	bool grounded = true;
 	bool dashed = false;
@@ -42,6 +45,13 @@ public class PlayerControl : MonoBehaviour
 			virtualMass = 3;
 		}
 		thrust = transform.parent.GetChild(0).GetChild(4).gameObject;
+		particles = new ParticleSystem.MainModule[3];
+		initParticleSizes = new float[3];
+		initThrustSizeMultiplier = 2;
+		for(int i = 0; i < 3; ++i) {
+			particles[i] = thrust.transform.GetChild(i).gameObject.GetComponent<ParticleSystem>().main;
+			initParticleSizes[i] = particles[i].startSize.constant;
+		}
 	}
 
 	void OnCollisionStay2D(Collision2D collision)
@@ -161,10 +171,18 @@ public class PlayerControl : MonoBehaviour
 		state.boostDelay = true;
 		float rocketBoostEffectTime = 1f;
 		thrust.SetActive(true);
+		SetParticleSize(initThrustSizeMultiplier);
 		for(float totalTime = 0f; totalTime < rocketBoostEffectTime; totalTime += Time.deltaTime) {
 			rb.AddForce(new Vector2(rocketForceX, rocketForceY));
 			yield return new WaitForFixedUpdate();
+			if(totalTime > .1f)
+				SetParticleSize(1);
 		}
 		thrust.SetActive(false);
+	}
+
+	void SetParticleSize(float multiplier) {
+		for(int i = 0; i < 3; ++i)
+			particles[i].startSize = initParticleSizes[i] * multiplier;
 	}
 }

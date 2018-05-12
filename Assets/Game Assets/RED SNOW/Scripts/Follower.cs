@@ -10,6 +10,7 @@ public class Follower : MonoBehaviour
         public float borderRatio;
         Vector2 borderRect;
         public bool isCool;
+        public GameObject background;
         float aspectRatio;
         float orthoSize ;
 
@@ -32,14 +33,17 @@ public class Follower : MonoBehaviour
             {
                 LayerMask mask = LayerMask.GetMask("Ground");
                 RaycastHit2D hit = Physics2D.Raycast(target.position,-Vector3.up, 100, mask);
+                float scaleFactor;
+                Vector2 bkgdScale;
                 offset = new Vector3(offset.x,-hit.distance/2,offset.z);
                 transform.position = target.position + offset;
                 if(Mathf.Abs( CalculateZoom(target.position , cam.transform.position, borderRect))*borderRatio/orthoSize > borderRatio)
                 {
+                    scaleFactor = CalculateZoom(target.position , transform.position, borderRect) / cam.GetComponent<Camera>().orthographicSize;
+                    bkgdScale = new Vector2(background.transform.localScale.x, background.transform.localScale.y) * scaleFactor;
+                    background.transform.localScale = new Vector3(bkgdScale.x, bkgdScale.y, background.transform.localScale.z);
                     cam.GetComponent<Camera>().orthographicSize = CalculateZoom(target.position , transform.position, borderRect);
                 }     
-                
-                           
             }
         }
 

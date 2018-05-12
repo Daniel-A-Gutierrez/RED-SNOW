@@ -20,4 +20,7 @@ public class HitBehavior : MonoBehaviour
 		}
 	}
 
+	void OnParticleCollision(GameObject go) {
+		Debug.Log(go);
+	}
 }

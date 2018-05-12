@@ -97,7 +97,7 @@ public class SlopeManager : MonoBehaviour
 
             }
         }
-        if (slopes_created%((int)Random.Range(15,19))== 0)
+        if (slopes_created%((int)Random.Range(15,16))== 0)
         {
                 List<int> pointIndex = new List<int>();
                 for (int i = 0; i < bezier.pointsQuantity; i += 10)

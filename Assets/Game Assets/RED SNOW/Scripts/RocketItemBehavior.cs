@@ -12,6 +12,7 @@ public class RocketItemBehavior : MonoBehaviour {
 		if(state.boostDelay && col.gameObject.tag == "Player") {
 			state.isBoosted = true;
 			state.boostDelay = false;
+			Destroy(gameObject);
 		}
 	}
 }

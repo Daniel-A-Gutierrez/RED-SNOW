@@ -12,6 +12,7 @@ public class Beholder : MonoBehaviour {
 	//Whether the Beholder has fired its damage laser yet
 	bool fired = false;
 	public LayerMask layerMask;
+	public int HP;
 
 	void Start(){
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -60,5 +61,32 @@ public class Beholder : MonoBehaviour {
 		lr.startWidth = lr.endWidth = 0.33f;
 		lr.positionCount = 1;
 		canTarget = true;		
+	}
+	
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(HP>1)
+		{
+			HP -= 1;
+		}
+		else
+		{
+			Die();
+		}
+	}
+
+	void Die(){
+		GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SlopeManager>().enemyCount --;
+		if(transform.parent.childCount > 0)
+		{
+			if(transform.parent.childCount > 1)
+			{
+				GameObject splatter = transform.parent.GetChild(1).gameObject;
+				splatter.SetActive(true);
+				splatter.GetComponent<BloodSplatter>().beginSpray();
+			}
+			Destroy(transform.parent.gameObject);
+		}
+		Destroy(gameObject);
 	}
 }

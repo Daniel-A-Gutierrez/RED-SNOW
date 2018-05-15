@@ -35,7 +35,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4092877644914104}
-  - component: {fileID: 114401630211146050}
   m_Layer: 14
   m_Name: BeholderContainer
   m_TagString: Enemy
@@ -69,7 +68,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4137782127659450}
   - component: {fileID: 58280415111947048}
-  - component: {fileID: 114731426412051744}
   - component: {fileID: 114008725581203166}
   - component: {fileID: 120229517186050494}
   m_Layer: 11
@@ -107,6 +105,7 @@ GameObject:
   - component: {fileID: 212722182282243412}
   - component: {fileID: 50224641886360342}
   - component: {fileID: 58307619056106672}
+  - component: {fileID: 114922167502100900}
   m_Layer: 10
   m_Name: Beholder
   m_TagString: Enemy
@@ -299,6 +298,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5553d1f3da88815498e7cd34e7041231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 131072
 --- !u!114 &114010895189057408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,29 +312,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b9b05dfc168324abc5e90cee311ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114401630211146050
+--- !u!114 &114922167502100900
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1461329297427258}
+  m_GameObject: {fileID: 1827470637517126}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d13ba1d415ac23c45b22d63aa6655ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114731426412051744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1639912446899586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f6b4140e828fe49ab54208f7444236, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 1
+  layer_mask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!120 &120229517186050494
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -416,7 +409,7 @@ LineRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 1
+    alignment: 0
     textureMode: 3
     generateLightingData: 0
   m_UseWorldSpace: 1

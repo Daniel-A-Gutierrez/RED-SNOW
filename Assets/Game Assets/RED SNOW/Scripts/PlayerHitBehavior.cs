@@ -20,4 +20,15 @@ public class PlayerHitBehavior : MonoBehaviour
 		}
 	}
 
+	//Utility function for damage that doesn't involve collisions
+	public void Damage(int damage){
+		if(HP - damage > 0)
+		{
+			HP -= damage;
+		}
+		else
+		{
+			transform.parent.parent.GetChild(1).GetComponent<PlayerControl>().Die();
+		}
+	}
 }

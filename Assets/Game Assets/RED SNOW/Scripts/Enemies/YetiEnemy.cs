@@ -57,7 +57,7 @@ public class YetiEnemy : NinjaGuy
         float y = target.position.y - throwPoint.position.y;
 
         rb.velocity = new Vector2(x, y);
-
+        
 
         yield return new WaitForSeconds(rockLifetime);
 

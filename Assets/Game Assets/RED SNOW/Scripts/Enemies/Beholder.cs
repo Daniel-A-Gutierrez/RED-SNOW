@@ -12,7 +12,7 @@ public class Beholder : MonoBehaviour {
 	//Whether the Beholder has fired its damage laser yet
 	bool fired = false;
 	public LayerMask layerMask;
-	public int HP;
+	public int HP = 1;
 
 	void Start(){
 		player = GameObject.FindGameObjectWithTag("Player");

@@ -44,6 +44,8 @@ public class SlopeManager : MonoBehaviour
 
     void CreateSlope(Vector2 p0, float density)
     {
+		slopes_created += 1; // HLE
+
         GameObject newSlope = Instantiate(toInstantiate, p0, Quaternion.identity);
 
         BezierCollider2D bezier = newSlope.GetComponent<BezierCollider2D>();
@@ -62,7 +64,6 @@ public class SlopeManager : MonoBehaviour
         bezier.secondPoint = new Vector2(length, decline * length);
         bezier.pointsQuantity = (int)(density * (length));
 
-        /*slopes_created += 1;*/ // HLE
         Vector2[] points = newSlope.GetComponent<BezierCollider2D>().calculate2DPoints();
         newSlope.GetComponent<EdgeCollider2D>().points = points;
         slopes.Add(newSlope.transform);
@@ -97,7 +98,7 @@ public class SlopeManager : MonoBehaviour
 
             }
         }
-        if (slopes_created%((int)Random.Range(15,16))== 0)
+        if (slopes_created%((int)Random.Range(10,19))== 0)
         {
                 List<int> pointIndex = new List<int>();
                 for (int i = 0; i < bezier.pointsQuantity; i += 10)
@@ -109,6 +110,7 @@ public class SlopeManager : MonoBehaviour
                 Vector2 spawn_r = points[pointIndex[(int)Random.Range(0, pointIndex.Count)]] + new Vector2(0, .12f) + (Vector2)newSlope.transform.position;
                 Instantiate(rocketBoostItem, spawn_r, Quaternion.identity);
         }
+	
 	}
 
 	// basically if the character gets within render distance
@@ -120,8 +122,14 @@ public class SlopeManager : MonoBehaviour
 		score = (int)transform.position.magnitude;
 		if(slopes[slopes.Count-1].position.x-player.transform.position.x < renderDistance)
 		{
-			CreateSlope(slopes[slopes.Count-1].GetComponent<BezierCollider2D>().secondPoint + 
-			new Vector2 ( slopes[slopes.Count-1].transform.position.x ,slopes[slopes.Count-1].transform.position.y) , 7.5f);
+			if (slopes_created % ((int)Random.Range (17, 19)) == 0) {
+				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
+				new Vector2 (slopes [slopes.Count - 1].transform.position.x +
+				Random.Range (4f, 9f), slopes [slopes.Count - 1].transform.position.y - Random.Range (4f, 13f)), 7.5f);
+			} else {
+				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
+				new Vector2 (slopes [slopes.Count - 1].transform.position.x, slopes [slopes.Count - 1].transform.position.y), 7.5f);
+			}
 		}
 		if(player.transform.position.x - slopes[0].position.x > renderDistance)
 		{

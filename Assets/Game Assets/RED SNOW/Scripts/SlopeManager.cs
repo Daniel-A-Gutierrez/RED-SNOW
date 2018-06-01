@@ -95,10 +95,11 @@ public class SlopeManager : MonoBehaviour
                     GameObject go = enemies[(int)Random.Range(0, enemies.Length)];
                     Instantiate(go, spawn, Quaternion.identity);
                 }
+					
 
             }
         }
-        if (slopes_created%((int)Random.Range(10,19))== 0)
+		if (Random.Range(0, 1f) <= .1)
         {
                 List<int> pointIndex = new List<int>();
                 for (int i = 0; i < bezier.pointsQuantity; i += 10)

@@ -144,6 +144,11 @@ public class PlayerControl : MonoBehaviour
 			//virtual mass style  rb.AddForce(-normal*Mathf.Abs((virtualMass - normalImpulse))/Time.deltaTime);
 			//rb.AddForce(-normal*(1+hit.distance*hit.distance)*virtualMass/Time.deltaTime);
 		}
+
+		//if (Input.GetButtonDown ("Fire1")) 
+		//{
+
+		//}
 		
 
 	}

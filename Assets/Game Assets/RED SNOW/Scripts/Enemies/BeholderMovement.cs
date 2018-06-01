@@ -9,6 +9,7 @@ public class BeholderMovement : MonoBehaviour {
 	float floatHeight = 5f;
 	float horizontalSpeed = 15f;
 	float horizontalDistanceBuffer = 10f;
+	float oscillationDelta;
 	GameObject player;
 	
 	void Start(){
@@ -18,6 +19,7 @@ public class BeholderMovement : MonoBehaviour {
 	}
 
 	void Update () {
+		oscillationDelta = Mathf.Sin(Time.time * 2) * 2.5f;
 		CheckHeight();
 		CheckHorizontalDistance();
 	}
@@ -25,8 +27,9 @@ public class BeholderMovement : MonoBehaviour {
 	void CheckHeight(){
 		RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, 30f, layer_mask);
 
-		if (hitInfo && hitInfo.distance != floatHeight){
-			transform.position = new Vector2(transform.position.x, hitInfo.point.y + floatHeight);
+		if (hitInfo){
+			
+			transform.position = new Vector2(transform.position.x, hitInfo.point.y + floatHeight + oscillationDelta);
 		}
 	}
 

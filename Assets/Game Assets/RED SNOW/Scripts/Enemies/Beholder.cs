@@ -14,6 +14,8 @@ public class Beholder : MonoBehaviour {
 	public LayerMask layerMask;
 	public int HP = 1;
 
+	public GameObject ProjectilePrefab;
+
 	void Start(){
 		player = GameObject.FindGameObjectWithTag("Player");
 		lr = GetComponent<LineRenderer>();
@@ -22,6 +24,24 @@ public class Beholder : MonoBehaviour {
 	}
 
 	void Update(){
+		LaserPointer();
+		//Projectile();
+	}
+	
+	void Projectile(){
+
+		Vector2 playerPosition = player.transform.position;
+		Vector2 thisPosition = transform.position;
+		if(Vector2.Distance(thisPosition, playerPosition) < attackRange && !fired){
+			Instantiate(ProjectilePrefab, thisPosition, Quaternion.identity);
+			fired = true;
+			Invoke("ResetFired", 1.5f);
+		}
+	}
+	void ResetFired(){
+		fired = false;
+	}
+	void LaserPointer(){
 		//Fire laser pointer at player until time to fire
 		lr.SetPosition(0, transform.position);
 		if (Vector2.Distance(transform.position, player.transform.position) < attackRange && canTarget){
@@ -32,8 +52,6 @@ public class Beholder : MonoBehaviour {
 			}
 		}
 	}
-	
-
 	IEnumerator LaserDamage(){
 		//Amount of time spent on target laser
 		fired = true;

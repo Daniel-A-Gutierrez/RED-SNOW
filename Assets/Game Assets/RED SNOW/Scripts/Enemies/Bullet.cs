@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-	public float speed = 7.5f;
+	public float speed = 5f;
 	Transform player;
 	Vector2 pos;
+	Vector2 v;
 	void OnCollisionEnter2D(Collision2D col){
 		Destroy(this.gameObject);
 	}
@@ -14,11 +15,12 @@ public class Bullet : MonoBehaviour {
 	void Awake(){
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		pos = player.position;
-		pos += player.GetComponent<Rigidbody2D>().velocity;
-
+		v.x = speed * (pos.x - transform.position.x);
+		v.y = speed * (pos.y - transform.position.y);
+		GetComponent<Rigidbody2D>().velocity = v;
 	}
 
-	void Update(){
-		transform.position = Vector2.MoveTowards(transform.position, pos, speed * Time.deltaTime);
+	void LateUpdate(){
+		GetComponent<Rigidbody2D>().velocity = v;	
 	}
 }

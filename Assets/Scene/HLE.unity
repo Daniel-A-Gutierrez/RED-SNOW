@@ -371,30 +371,34 @@ Prefab:
       objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 1748573565643674, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4724184925028300, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4587869235615260, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4269193291372026, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4830333570827786, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4877959140287226, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4429836802049454, guid: 021e91af7b2694a488202c9b00433425, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771979300776374, guid: 021e91af7b2694a488202c9b00433425, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -934,7 +938,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4269601645229404, guid: cc117b9dad76f46a790c7c3473edb062, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.101
+      value: 0.10100001
       objectReference: {fileID: 0}
     - target: {fileID: 4269601645229404, guid: cc117b9dad76f46a790c7c3473edb062, type: 2}
       propertyPath: m_LocalPosition.z
@@ -958,7 +962,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4269601645229404, guid: cc117b9dad76f46a790c7c3473edb062, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4269601645229404, guid: cc117b9dad76f46a790c7c3473edb062, type: 2}
       propertyPath: m_LocalScale.x
@@ -976,6 +980,10 @@ Prefab:
     - target: {fileID: 1530323016643446, guid: cc117b9dad76f46a790c7c3473edb062, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530323016643446, guid: cc117b9dad76f46a790c7c3473edb062, type: 2}
+      propertyPath: m_Layer
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc117b9dad76f46a790c7c3473edb062, type: 2}

@@ -11,6 +11,7 @@ TagManager:
   - ControlBall
   - Canvas
   - RocketItem
+  - attack
   layers:
   - Default
   - TransparentFX

@@ -26,8 +26,7 @@ public class PlayerControl : MonoBehaviour
 	bool jumped = false;
     bool dead = false;
 	float angularSpeedTarget;
-	//Collider2D attackcol;
-	//Animator myanimator;
+	Collider2D attackcol;
 	
 
 	// note - the player must be the first object underneath the parent in the hierarchy. The ball must be second. 
@@ -46,7 +45,6 @@ public class PlayerControl : MonoBehaviour
 		{
 			virtualMass = 3;
 		}
-		//attackcol = GameObject.Find ("Triangle").GetComponent<Collider2D>();
 		thrust = transform.parent.GetChild(0).GetChild(4).gameObject;
 		particles = new ParticleSystem.MainModule[3];
 		initParticleSizes = new float[3];
@@ -147,25 +145,11 @@ public class PlayerControl : MonoBehaviour
 			//virtual mass style  rb.AddForce(-normal*Mathf.Abs((virtualMass - normalImpulse))/Time.deltaTime);
 			//rb.AddForce(-normal*(1+hit.distance*hit.distance)*virtualMass/Time.deltaTime);
 		}
-
-		/*if (Input.GetKeyDown(KeyCode.X) && (dead == false))
-		{
-			myanimator.SetTrigger ("attack");
-		}*/
+			
 		
 
 	}
 
-	/*void Attack()
-	{
-		attackcol.enabled = true;
-	}
-
-	void NoAttack()
-	{
-		attackcol.enabled = false;
-		myanimator.SetTrigger ("attack");
-	}*/
 
 	void Jump()
 	{

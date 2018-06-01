@@ -7,7 +7,7 @@ public class Beholder : MonoBehaviour {
 	GameObject player;
 	LineRenderer lr;
 	//Max Laser range
-	float attackRange = 15.0f;
+	float attackRange = 17.5f;
 	bool canTarget = true;
 	//Whether the Beholder has fired its damage laser yet
 	bool fired = false;
@@ -28,6 +28,7 @@ public class Beholder : MonoBehaviour {
 		//Projectile();
 	}
 	
+	//Not fully functional
 	void Projectile(){
 
 		Vector2 playerPosition = player.transform.position;

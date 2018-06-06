@@ -31,7 +31,7 @@ public class Follower : MonoBehaviour
             }
             if(isCool == true)
             {
-                LayerMask mask = LayerMask.GetMask("Ground");
+                LayerMask mask = LayerMask.GetMask( "Ground", "CameraGround" );
                 RaycastHit2D hit = Physics2D.Raycast(target.position,-Vector3.up, 100, mask);
                 float scaleFactor;
                 Vector2 bkgdScale;

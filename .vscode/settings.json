@@ -52,5 +52,6 @@
         "ProjectSettings/":true,
         "temp/":true,
         "Temp/":true
-    }
+    },
+    "python.pythonPath": "B:\\Program Files (x86)\\Python\\python.exe"
 }

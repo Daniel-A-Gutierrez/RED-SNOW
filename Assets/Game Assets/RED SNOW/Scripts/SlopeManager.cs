@@ -125,7 +125,7 @@ public class SlopeManager : MonoBehaviour
         }
 	
 	}
-
+    public float pitfallChance ;
 	// basically if the character gets within render distance
 	//of the next chunk, generate a chunk that starts on the
 	// end point of the last one and has procedurally generated
@@ -136,7 +136,7 @@ public class SlopeManager : MonoBehaviour
 		if(slopes[slopes.Count-1].position.x-player.transform.position.x < renderDistance)
 		{
             //creates a slope 4 to 9 to the right and 4 to 13 below where itd normally be
-			if ( !lastPitfall & Random.Range(0f,1f) < .12f) {
+			if ( !lastPitfall & Random.Range(0f,1f) < pitfallChance) {
 				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
 				    new Vector2 (slopes [slopes.Count - 1].transform.position.x, slopes [slopes.Count - 1].transform.position.y), 7.5f
                     ,true, Random.Range(8,16) );

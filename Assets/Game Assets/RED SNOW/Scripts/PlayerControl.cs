@@ -130,7 +130,7 @@ public class PlayerControl : MonoBehaviour
 			jumped = true;
 		}
 		// i think this would be better with a coroutine that handles the transform. 
-		if(Input.GetKey(KeyCode.A)&Input.GetKey(KeyCode.LeftShift)& grounded == false & dashed == false)
+		if(Input.GetKey(KeyCode.S)& grounded == false & dashed == false)
 		{
 			if(rb.velocity.y>0)
 			{

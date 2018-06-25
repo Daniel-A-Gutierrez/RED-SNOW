@@ -24,6 +24,12 @@ public class UIBehavior : MonoBehaviour {
     {
         c_animator.SetBool("Dead", true);
     }
+    public void indicateRocket(bool indicate)
+    {
+        GameObject indicator = GameObject.FindGameObjectWithTag("RocketIndicator");
+        indicator.GetComponent<Image>().enabled = indicate;
+        indicator.GetComponentInChildren<Text>().enabled = indicate;
+    }
 
 
 }

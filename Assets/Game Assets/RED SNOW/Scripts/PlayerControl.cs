@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
 	public float virtualMass;
 	public float jumpPower;
 	public State state;
+	bool indicateBoost = false;
 	public float rocketBoostEffectTime;
 	public float rocketForceX, rocketForceY;
 	public float initThrustSizeMultiplier;
@@ -83,6 +84,7 @@ public class PlayerControl : MonoBehaviour
 		}
 	}
 
+
 	
 	void FixedUpdate ()
 	{
@@ -109,6 +111,11 @@ public class PlayerControl : MonoBehaviour
 			
 			StartCoroutine(RocketBoost());
 		}
+		if( !indicateBoost & state.isBoosted )
+		{
+			indicateBoost = true;
+			GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIBehavior>().indicateRocket(true);
+		}
  		if(grounded == false)
 		{
 			hit = Physics2D.Raycast(transform.position,-Vector3.up, 1000, ground);
@@ -117,7 +124,7 @@ public class PlayerControl : MonoBehaviour
 				dj.distance = 3*hit.distance+.2f;
 			}
 		}
-
+		player.GetComponent<Animator>().SetFloat("speed" ,rb.velocity.magnitude);
 
 		if(Input.GetKeyDown(KeyCode.Space)& grounded == true)
 		{
@@ -182,6 +189,8 @@ public class PlayerControl : MonoBehaviour
 				SetParticleSize(1);
 		}
 		thrust.SetActive(false);
+		GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIBehavior>().indicateRocket(false);
+		indicateBoost = false;
 	}
 
 	void SetParticleSize(float multiplier) {

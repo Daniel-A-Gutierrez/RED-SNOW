@@ -12,6 +12,7 @@ TagManager:
   - Canvas
   - RocketItem
   - attack
+  - RocketIndicator
   layers:
   - Default
   - TransparentFX
@@ -34,6 +35,7 @@ TagManager:
   - Fire
   - FireParticles
   - PlayerAttack
+  - CameraGround
   - 
   - 
   - 

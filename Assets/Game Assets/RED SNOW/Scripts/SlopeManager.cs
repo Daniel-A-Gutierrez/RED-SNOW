@@ -5,7 +5,9 @@ using UnityEngine;
 public class SlopeManager : MonoBehaviour
 {
     GameObject player;
-    public GameObject toInstantiate;
+    bool lastPitfall = true;
+    public GameObject pitfallPrefab;
+    public GameObject slopePrefab;
     public int score;
     List<Transform> slopes;
     public float slopeLengthFactor;
@@ -42,17 +44,28 @@ public class SlopeManager : MonoBehaviour
 
 
 
-    void CreateSlope(Vector2 p0, float density)
+    void CreateSlope(Vector2 p0, float density, bool Pitfall = false, float length = 0)
     {
 		slopes_created += 1; // HLE
-
-        GameObject newSlope = Instantiate(toInstantiate, p0, Quaternion.identity);
+        GameObject newSlope;
+        if(Pitfall)
+        {
+            newSlope = Instantiate(pitfallPrefab, p0, Quaternion.identity);            
+        }
+        else
+        {
+            newSlope = Instantiate(slopePrefab, p0, Quaternion.identity);
+        }
 
         BezierCollider2D bezier = newSlope.GetComponent<BezierCollider2D>();
         BezierCollider2D previousBezier = slopes[slopes.Count - 1].GetComponent<BezierCollider2D>();
         Vector2 d00 = previousBezier.getLastDerivative();
-        float decline = slopeDeclineFactor * Random.Range(-.2f, 1.5f);
-        float length = slopeLengthFactor * Random.Range(.25f, 2);
+        float decline = slopeDeclineFactor * Random.Range(.5f, 2f);
+        if(length == 0)
+        {
+            length = slopeLengthFactor * Random.Range(.25f, 2);
+            decline = slopeDeclineFactor * Random.Range(-.2f, 2f);
+        }
         float turbulence = slopeTurbulenceFactor * Random.Range(0, 2);
         float deviation1 = Random.Range(.2f, .7f);
         float deviation2 = Random.Range(deviation1, .8f);
@@ -69,13 +82,12 @@ public class SlopeManager : MonoBehaviour
         slopes.Add(newSlope.transform);
 
 
-        if (enemyCount < 15)
+        if (enemyCount < 15 & !Pitfall)
         {
             int spawnEnemy = (int)(spawnChance / Random.Range(0, 1f));
             if (spawnEnemy > 5)
             {
                 spawnEnemy = 5;
-
             }
             enemyCount += spawnEnemy;
             if (spawnEnemy > 0)
@@ -99,7 +111,7 @@ public class SlopeManager : MonoBehaviour
 
             }
         }
-		if (Random.Range(0, 1f) <= .1)
+		if (Random.Range(0, 1f) <= .1 & !Pitfall)
         {
                 List<int> pointIndex = new List<int>();
                 for (int i = 0; i < bezier.pointsQuantity; i += 10)
@@ -113,7 +125,7 @@ public class SlopeManager : MonoBehaviour
         }
 	
 	}
-
+    public float pitfallChance ;
 	// basically if the character gets within render distance
 	//of the next chunk, generate a chunk that starts on the
 	// end point of the last one and has procedurally generated
@@ -123,13 +135,18 @@ public class SlopeManager : MonoBehaviour
 		score = (int)transform.position.magnitude;
 		if(slopes[slopes.Count-1].position.x-player.transform.position.x < renderDistance)
 		{
-			if (slopes_created % ((int)Random.Range (17, 19)) == 0) {
+            //creates a slope 4 to 9 to the right and 4 to 13 below where itd normally be
+			if ( !lastPitfall & Random.Range(0f,1f) < pitfallChance) {
 				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
-				new Vector2 (slopes [slopes.Count - 1].transform.position.x +
-				Random.Range (4f, 9f), slopes [slopes.Count - 1].transform.position.y - Random.Range (4f, 13f)), 7.5f);
-			} else {
+				    new Vector2 (slopes [slopes.Count - 1].transform.position.x, slopes [slopes.Count - 1].transform.position.y), 7.5f
+                    ,true, Random.Range(8,16) );
+                lastPitfall = true;
+			} 
+            else
+            {
 				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
 				new Vector2 (slopes [slopes.Count - 1].transform.position.x, slopes [slopes.Count - 1].transform.position.y), 7.5f);
+                lastPitfall = false;
 			}
 		}
 		if(player.transform.position.x - slopes[0].position.x > renderDistance)

@@ -15,14 +15,13 @@ public class SlopeManager : MonoBehaviour
     public float slopeTurbulenceFactor;
     public float renderDistance;
     public GameObject[] enemies;
-    public float spawnChance;
-    //0 to 1
+    public float spawnChance;    //0 to 1
     public int enemyCount;
     public GameObject boulder; // ask about this - HLE
     public GameObject rocketBoostItem;
-    public int slopes_created = 0; // Since i didn't necessarily know about random generation, i decided to count the numebr of updates on the slopes to
-                                   // to determine when to spawn a boulder - HLE
-
+    public float itemChance;
+    public float obstacleChance;
+    public float pitfallChance ;
     float originalRD;
     // Use this for initialization
     void Start()
@@ -42,11 +41,41 @@ public class SlopeManager : MonoBehaviour
         renderDistance = originalRD * transform.localScale.magnitude;
     }
 
-
+    
+	// basically if the character gets within render distance
+	//of the next chunk, generate a chunk that starts on the
+	// end point of the last one and has procedurally generated
+	//attributes. If the first element in slopes is too far behind, 
+    //delete it. 
+	void FixedUpdate ()
+	{
+		score = (int)transform.position.magnitude;
+		if(slopes[slopes.Count-1].position.x-player.transform.position.x < renderDistance)
+		{
+            //creates a slope 4 to 9 to the right and 4 to 13 below where itd normally be
+			if ( !lastPitfall & Random.Range(0f,1f) < pitfallChance) {
+				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
+				    new Vector2 (slopes [slopes.Count - 1].transform.position.x, slopes [slopes.Count - 1].transform.position.y), 7.5f
+                    ,true, Random.Range(8,16) );
+                lastPitfall = true;
+			} 
+            else
+            {
+				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
+				new Vector2 (slopes [slopes.Count - 1].transform.position.x, slopes [slopes.Count - 1].transform.position.y), 7.5f);
+                lastPitfall = false;
+			}
+		}
+		if(player.transform.position.x - slopes[0].position.x > renderDistance)
+		{
+			GameObject obj = slopes[0].gameObject;
+			slopes.RemoveAt(0);
+			Destroy(obj);
+		}
+	}
 
     void CreateSlope(Vector2 p0, float density, bool Pitfall = false, float length = 0)
     {
-		slopes_created += 1; // HLE
         GameObject newSlope;
         if(Pitfall)
         {
@@ -81,8 +110,21 @@ public class SlopeManager : MonoBehaviour
         newSlope.GetComponent<EdgeCollider2D>().points = points;
         slopes.Add(newSlope.transform);
 
-
-        if (enemyCount < 15 & !Pitfall)
+        List<int> pointIndeces = new List<int>();
+            for (int i = 0; i < bezier.pointsQuantity; i += 25)
+            {
+                pointIndeces.Add(i);
+            }
+        if(!Pitfall)
+        {
+            SpawnThings(newSlope.transform.position,pointIndeces,points);
+        }
+	}
+    
+    //spawns enemies, items, and obstacles.
+    private void SpawnThings(Vector3 newSlopePosition, List<int> pointIndeces, Vector2[] points  )
+    {
+        if (enemyCount < 15)
         {
             int spawnEnemy = (int)(spawnChance / Random.Range(0, 1f));
             if (spawnEnemy > 5)
@@ -95,65 +137,27 @@ public class SlopeManager : MonoBehaviour
                 // get a list of all the points on the slope,
                 // pick spawnEnemy number randomly
                 // spawn random Enemies from Enemies at those points. 
-                List<int> pointIndex = new List<int>();
-                for (int i = 0; i < bezier.pointsQuantity; i += 10)
-                {
-                    pointIndex.Add(i);
-                }
 
                 for (int i = 0; i < spawnEnemy; i++)
                 {
-                    Vector2 spawn = points[pointIndex[(int)Random.Range(0, pointIndex.Count)]] + new Vector2(0, .12f) + (Vector2)newSlope.transform.position;
+                    Vector2 spawn = points[pointIndeces[(int)Random.Range(0, pointIndeces.Count)]] + new Vector2(0, .12f) + (Vector2)newSlopePosition;
                     GameObject go = enemies[(int)Random.Range(0, enemies.Length)];
                     Instantiate(go, spawn, Quaternion.identity);
                 }
-					
-
             }
+
         }
-		if (Random.Range(0, 1f) <= .1 & !Pitfall)
+		if (Random.Range(0, 1f) <= itemChance )
         {
-                List<int> pointIndex = new List<int>();
-                for (int i = 0; i < bezier.pointsQuantity; i += 10)
-                {
-                    pointIndex.Add(i);
-                }
-                Vector2 spawn_b = points[pointIndex[(int)Random.Range(0, pointIndex.Count)]] + new Vector2(0, .12f) + (Vector2)newSlope.transform.position;
-                Instantiate(boulder, spawn_b, Quaternion.identity);
-                Vector2 spawn_r = points[pointIndex[(int)Random.Range(0, pointIndex.Count)]] + new Vector2(0, .12f) + (Vector2)newSlope.transform.position;
+                Vector2 spawn_r = points[pointIndeces[(int)Random.Range(0, pointIndeces.Count)]] + new Vector2(0, .12f) + (Vector2)newSlopePosition;
                 Instantiate(rocketBoostItem, spawn_r, Quaternion.identity);
         }
-	
-	}
-    public float pitfallChance ;
-	// basically if the character gets within render distance
-	//of the next chunk, generate a chunk that starts on the
-	// end point of the last one and has procedurally generated
-	//attributes. 
-	void FixedUpdate ()
-	{
-		score = (int)transform.position.magnitude;
-		if(slopes[slopes.Count-1].position.x-player.transform.position.x < renderDistance)
-		{
-            //creates a slope 4 to 9 to the right and 4 to 13 below where itd normally be
-			if ( !lastPitfall & Random.Range(0f,1f) < pitfallChance) {
-				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
-				    new Vector2 (slopes [slopes.Count - 1].transform.position.x, slopes [slopes.Count - 1].transform.position.y), 7.5f
-                    ,true, Random.Range(8,16) );
-                lastPitfall = true;
-			} 
-            else
-            {
-				CreateSlope (slopes [slopes.Count - 1].GetComponent<BezierCollider2D> ().secondPoint +
-				new Vector2 (slopes [slopes.Count - 1].transform.position.x, slopes [slopes.Count - 1].transform.position.y), 7.5f);
-                lastPitfall = false;
-			}
-		}
-		if(player.transform.position.x - slopes[0].position.x > renderDistance)
-		{
-			GameObject obj = slopes[0].gameObject;
-			slopes.RemoveAt(0);
-			Destroy(obj);
-		}
-	}
+        if (Random.Range(0, 1f) <= obstacleChance )
+        {
+                Vector2 spawn_b = points[pointIndeces[(int)Random.Range(0, pointIndeces.Count)]] + new Vector2(0, .12f) + (Vector2)newSlopePosition;
+                Instantiate(boulder, spawn_b, Quaternion.identity);
+        }
+    }
+
+    
 }

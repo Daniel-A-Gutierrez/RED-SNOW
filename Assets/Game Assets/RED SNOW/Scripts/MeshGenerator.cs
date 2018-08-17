@@ -8,6 +8,9 @@ public class MeshGenerator : MonoBehaviour {
     EdgeCollider2D edgeCollider;
 	public float border = -20;
 	public Mesh mesh;
+	//border is the distance below the top where the slope will end. How
+	//thick it is. The pattern of points in the mesh from the edge collider
+	//is edgepoint1,edgepoint1 - border,edgepoint2 repeat
 	void Start()
 	{
         edgeCollider = GetComponent<EdgeCollider2D>();
